@@ -1,45 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { Do_Hyeon, Neonderthaw, Audiowide } from "next/font/google";
+import { Do_Hyeon, Neonderthaw } from "next/font/google";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Nithish from "../public/nithish.jpeg";
 import Sachin from "../public/sachin.jpeg";
-import { useEffect, Component } from "react";
-import Typed from "typed.js"; // Import the desired words
+import { useEffect } from "react";
 import { StaticImageData } from "next/image";
 
-class Typing extends Component {
-  el: HTMLElement | null = null;
-  typed: Typed | null = null;
-  componentDidMount() {
-    const options = {
-      strings: ["Welcome"],
-      typeSpeed: 50,
-      backSpeed: 50,
-      cursorChar: ".",
-    };
-    // this.el refers to the <span> in the render() method
-    this.typed = new Typed(this.el, options);
-  }
-  componentWillUnmount() {
-    this.typed?.destroy();
-  }
-
-  render() {
-    return (
-      <>
-        <span
-          style={{ whiteSpace: "pre" }}
-          ref={(el) => {
-            this.el = el;
-          }}
-        />
-      </>
-    );
-  }
-}
 
 const hyeon = Do_Hyeon({ subsets: ["latin"], weight: "400" });
 const foldit = Neonderthaw({ subsets: ["latin"], weight: "400" });
