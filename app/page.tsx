@@ -5,6 +5,7 @@ import { Do_Hyeon, Neonderthaw, Audiowide } from "next/font/google";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Nithish from "../public/nithish.jpeg";
+import Sachin from "../public/sachin.jpeg";
 import { useEffect, Component } from "react";
 import Typed from "typed.js"; // Import the desired words
 import { StaticImageData } from "next/image";
@@ -52,6 +53,17 @@ type dbSchema = {
 };
 
 const db: dbSchema[] = [
+  {
+    name: "Sachin PJ",
+    image: Sachin,
+    roles: ["Mod", "Events Manager"],
+    description:
+      "A typical tech nerd, but with curiosity to prompt out any topic and understand it patiently. Tech enthusiast with a knack for deep dives into niche topics. Skilled in system design, management, and maintenance. Always open for discussions—let's connect and brainstorm!",
+    links: [
+      ["Linkedin", "https://www.linkedin.com/in/nitish--rajendran"],
+      ["Github", "https://github.com/Nitish-Rajendran"],
+    ],
+  },
   {
     name: "Nithish",
     image: Nithish,
@@ -147,14 +159,16 @@ function Hero() {
   return (
     <div
       className={
-        "min-h-svh bg-[url(https://t4.ftcdn.net/jpg/09/96/50/47/240_F_996504707_PNwAe8hrzeV9C4lSyeH2G9pNDcdFWVCm.jpg)] text-white flex justify-center min-w-full sm:text-[200px] items-center text-center snap-start " +
+        "bg-cover bg-[url(https://t4.ftcdn.net/jpg/09/96/50/47/240_F_996504707_PNwAe8hrzeV9C4lSyeH2G9pNDcdFWVCm.jpg)] text-white sm:text-[200px] text-center snap-start " +
         foldit.className
       }
     >
-      <h1>
+      <div className="bg-[#000000d0]  items-center min-h-svh flex justify-center min-w-full ">
+      <h1 className=" text-white text-7xl" data-aos='fade-in'>
         Qynex <br />
         <span className="text-7xl relative sm:bottom-[100px]">Nexora</span>
       </h1>
+      </div>
     </div>
   );
 }
