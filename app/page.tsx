@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Do_Hyeon, Neonderthaw ,     Bungee_Outline, Bungee_Hairline     } from "next/font/google";
+import { Do_Hyeon,Bungee_Hairline     } from "next/font/google";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Nithish from "../public/nithish.jpeg";
