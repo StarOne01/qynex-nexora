@@ -6,12 +6,15 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Nithish from "../public/nithish.jpeg";
 import Sachin from "../public/sachin.jpeg";
+import me from "../public/Me.jpeg";
+import Nandha from "../public/Nandha.jpg";
+import Karthi from "../public/Karthi.jpg";
 import { useEffect } from "react";
 import { StaticImageData } from "next/image";
 
 
 const hyeon = Do_Hyeon({ subsets: ["latin"], weight: "400" });
-const foldit = Bungee_Hairline({ subsets: ["latin"], weight: "400" });
+const bungee = Bungee_Hairline({ subsets: ["latin"], weight: "400" });
 
 type dbSchema = {
   name: string;
@@ -34,9 +37,9 @@ const db: dbSchema[] = [
     ],
   },
   {
-    name: "Nithish",
+    name: "Nitish",
     image: Nithish,
-    roles: ["Mod"],
+    roles: ["Mod", "Hackathon Management"],
     description:
       "A typical tech nerd, but with curiosity to prompt out any topic and understand it patiently. Tech enthusiast with a knack for deep dives into niche topics. Skilled in system design, management, and maintenance. Always open for discussions—let's connect and brainstorm!",
     links: [
@@ -45,9 +48,32 @@ const db: dbSchema[] = [
     ],
   },
   {
+    name: "Nandha Krishnan",
+    image: Nandha,
+    roles: ["Mentor", "MERN Developer"],
+    description:
+      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
+    links: [
+      ["Portfolio", "https://nandhakrishnan.vercel.app/"],
+      ["LinkedIn", "https://www.linkedin.com/in/nandhakrishnanp/"],
+    ],
+  },
+  {
+    name: "Karthikeyan C",
+    image: Karthi,
+    roles: ["Mod", "Head Co-ordinator"],
+    description:
+      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
+    links: [
+      ["Portfolio", "https://nandhakrishnan.vercel.app/"],
+      ["LinkedIn", "https://www.linkedin.com/in/nandhakrishnanp/"],
+    ],
+  },
+
+  {
     name: "Prashanth (StarOne01)",
-    image:
-      "https://i.cdn.newsbytesapp.com/images/28755281716927168.jpeg?tr=w-720",
+    image: me,
+      // "https://i.cdn.newsbytesapp.com/images/28755281716927168.jpeg?tr=w-720",
     roles: ["Mentor", "Mod", "Founder"],
     description:
       "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
@@ -128,14 +154,37 @@ function Hero() {
   return (
     <div
       className={
-        "bg-cover bg-fixed bg-[url(https://wallpapershome.com/images/pages/pic_h/26430.jpg)] text-white sm:text-[200px] text-center snap-start " + foldit.className      }
+        "bg-cover bg-fixed bg-[url(https://wallpapershome.com/images/pages/pic_h/26430.jpg)] text-white text-center backdrop:blur-lg snap-start backdrop-blur-md " + bungee.className      }
     >
       <div className="dark:bg-[#0000002f] bg-[#ffffff10]  items-center min-h-svh flex justify-center min-w-full ">
-      <h1 className=" text-white " data-aos='fade-in'>
+      <h1 className={" text-white max-h-28 " + bungee.className  }    data-aos='fade-in'>
         <span className="text-8xl">Qynex</span> <br />
         <span className="text-5xl">Nexora</span>
       </h1>
       </div>
+    </div>
+  );
+}
+
+function Intro() {
+  return (
+    <div className={"max-w-[800px] flex flex-col justify-evenly min-h-svh mx-auto p-8 sm:p-20 snap-start " + hyeon.className}>
+      <div className="dark:bg-[#0000002f] text-center bg-[#ffffff10]  items-center flex justify-center min-w-full ">
+      <h1 className={" text-white " + bungee.className  }>
+        <span className="text-8xl">Qynex</span> <br />
+        <span className="text-5xl">Nexora</span>
+      </h1>
+      </div>
+      <p className="text-md mt-4  font-[family-name:var(--font-geist-mono)]">
+        We are a team of passionate developers, designers, and creators who love
+        to build and design things. We are always looking for new opportunities
+        to learn and grow as developers and designers. We love to work on
+        projects that involve both design and development. We have experience in
+        web development, mobile app development, and game development. We are
+        always looking for new opportunities to learn and grow as developers and
+        designers.
+      </p>
+
     </div>
   );
 }
@@ -150,6 +199,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Intro />
       <Cards props={db} />
     </>
   );
