@@ -1,101 +1,175 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Image from "next/image";
+import { Do_Hyeon, Neonderthaw, Audiowide } from "next/font/google";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Nithish from "../public/nithish.jpeg";
+import { useEffect, Component } from "react";
+import Typed from "typed.js"; // Import the desired words
+import { StaticImageData } from "next/image";
+
+class Typing extends Component {
+  el: HTMLElement | null = null;
+  typed: Typed | null = null;
+  componentDidMount() {
+    const options = {
+      strings: ["Welcome"],
+      typeSpeed: 50,
+      backSpeed: 50,
+      cursorChar: ".",
+    };
+    // this.el refers to the <span> in the render() method
+    this.typed = new Typed(this.el, options);
+  }
+  componentWillUnmount() {
+    this.typed?.destroy();
+  }
+
+  render() {
+    return (
+      <>
+        <span
+          style={{ whiteSpace: "pre" }}
+          ref={(el) => {
+            this.el = el;
+          }}
+        />
+      </>
+    );
+  }
+}
+
+const hyeon = Do_Hyeon({ subsets: ["latin"], weight: "400" });
+const foldit = Neonderthaw({ subsets: ["latin"], weight: "400" });
+
+type dbSchema = {
+  name: string;
+  image: string | StaticImageData;
+  roles: string[];
+  description: string;
+  links: [[string, string], [string, string]];
+};
+
+const db: dbSchema[] = [
+  {
+    name: "Nithish",
+    image: Nithish,
+    roles: ["Mod"],
+    description:
+      "A typical tech nerd, but with curiosity to prompt out any topic and understand it patiently. Tech enthusiast with a knack for deep dives into niche topics. Skilled in system design, management, and maintenance. Always open for discussions—let's connect and brainstorm!",
+    links: [
+      ["Linkedin", "https://www.linkedin.com/in/nitish--rajendran"],
+      ["Github", "https://github.com/Nitish-Rajendran"],
+    ],
+  },
+  {
+    name: "Prashanth (StarOne01)",
+    image:
+      "https://i.cdn.newsbytesapp.com/images/28755281716927168.jpeg?tr=w-720",
+    roles: ["Mentor", "Mod", "Founder"],
+    description:
+      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
+    links: [
+      ["Portfolio", "https://starone01.github.io/"],
+      ["Github", "https://github.com/StarOne01/"],
+    ],
+  },
+];
+function cards(data: dbSchema) {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div
+      key={data.name}
+      className={
+        "grid grid-cols-1 justify-items-center min-h-svh p-8 pb-20 sm:p-20 snap-start " +
+        hyeon.className
+      }
+    >
+      <div className="flex flex-col max-w-[600px] gap-8 row-start-2 items-center sm:items-start">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
+          className="rounded-lg"
+          src={data.image}
+          alt="StarOne01"
+          data-aos="fade-in"
           width={180}
           height={38}
           priority
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+        <div className="text-4xl text-center sm:text-left">{data.name}</div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+        <ul className="flex gap-2 text-sm font-black flex-row">
+          {data.roles.map((role) => (
+            <li key={role + data.name} data-aos="fade-in">
+              <span className="border-2 border-[#9b9b9b] px-3 py-2 rounded-lg">
+                {role}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p
+          data-aos="fade-in"
+          className="list-inside list-disc  text-sm sm:text-left text-center font-[family-name:var(--font-geist-mono)]"
+        >
+          {data.description}
+        </p>
+        <div className="flex gap-4 items-center flex-row">
           <a
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href={data.links[0][1]}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            {data.links[0][0]}
           </a>
           <a
             className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href={data.links[1][1]}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Read our docs
+            {data.links[1][0]}
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
+  );
+}
+
+function Cards({ props }: { props: dbSchema[] }) {
+  return (
+    <div className="grid grid-cols-1 gap-8 sm:gap-16">
+      {props.map((db: dbSchema) => cards(db))}
+    </div>
+  );
+}
+
+function Hero() {
+  return (
+    <div
+      className={
+        "min-h-svh bg-[url(https://t4.ftcdn.net/jpg/09/96/50/47/240_F_996504707_PNwAe8hrzeV9C4lSyeH2G9pNDcdFWVCm.jpg)] text-white flex justify-center min-w-full sm:text-[200px] items-center text-center snap-start " +
+        foldit.className
+      }
+    >
+      <h1>
+        Qynex <br />
+        <span className="text-7xl relative sm:bottom-[100px]">Nexora</span>
+      </h1>
+    </div>
+  );
+}
+
+export default function Home() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+    });
+  }, []);
+  return (
+    <>
+      <Hero />
+      <Cards props={db} />
+    </>
   );
 }
