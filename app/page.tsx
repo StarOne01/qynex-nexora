@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Do_Hyeon, Neonderthaw } from "next/font/google";
+import { Do_Hyeon, Neonderthaw ,     Bungee_Outline, Bungee_Hairline     } from "next/font/google";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Nithish from "../public/nithish.jpeg";
@@ -11,7 +11,7 @@ import { StaticImageData } from "next/image";
 
 
 const hyeon = Do_Hyeon({ subsets: ["latin"], weight: "400" });
-const foldit = Neonderthaw({ subsets: ["latin"], weight: "400" });
+const foldit = Bungee_Hairline({ subsets: ["latin"], weight: "400" });
 
 type dbSchema = {
   name: string;
@@ -128,14 +128,12 @@ function Hero() {
   return (
     <div
       className={
-        "bg-cover bg-[url(https://t4.ftcdn.net/jpg/09/96/50/47/240_F_996504707_PNwAe8hrzeV9C4lSyeH2G9pNDcdFWVCm.jpg)] text-white sm:text-[200px] text-center snap-start " +
-        foldit.className
-      }
+        "bg-cover bg-fixed bg-[url(https://wallpapershome.com/images/pages/pic_h/26430.jpg)] text-white sm:text-[200px] text-center snap-start " + foldit.className      }
     >
-      <div className="bg-[#000000d0]  items-center min-h-svh flex justify-center min-w-full ">
-      <h1 className=" text-white text-7xl" data-aos='fade-in'>
-        Qynex <br />
-        <span className="text-7xl relative sm:bottom-[100px]">Nexora</span>
+      <div className="dark:bg-[#0000002f] bg-[#ffffff10]  items-center min-h-svh flex justify-center min-w-full ">
+      <h1 className=" text-white " data-aos='fade-in'>
+        <span className="text-8xl">Qynex</span> <br />
+        <span className="text-5xl">Nexora</span>
       </h1>
       </div>
     </div>
