@@ -5,7 +5,7 @@ import { Do_Hyeon, Bungee_Hairline } from "next/font/google";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
-import managers, { mentors, team } from "../data/db";
+import managers, { mentors, team, coOrds, founder } from "../data/db";
 import type { dbSchema } from "../data/db";
 
 const hyeon = Do_Hyeon({ subsets: ["latin"], weight: "400" });
@@ -200,7 +200,9 @@ function Nav() {
       <Intro />
       <Cards props={mentors} role="mentors" />
       <Cards props={managers} role="managers" />
+      <Cards props={coOrds} role="co-ords" />
       <Cards props={team} role="team" />
+      <Cards props={founder} role="founder" />
       <Tag />
     </>
   );

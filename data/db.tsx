@@ -83,7 +83,7 @@ const mentors: dbSchema[] = [
     image: Saran,
     roles: ["Friendly-Neighbourhood", "Kotlin Developer"],
     description:
-      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
+      "A creative soul with a passion for bringing unique ideas to life. Known for patience and adaptability, I thrive in any situation. Proficient in cryptocurrencies and Android app development, I enjoy working with diverse teams to turn ideas into impactful solutions. Let’s collaborate and make a difference!",
     links: [
       ["Portfolio", "https://saran.vercel.app/"],
       ["LinkedIn", "https://www.linkedin.com/in/saranraj-p/"],
@@ -114,6 +114,21 @@ const managers: dbSchema[] = [
       ["LinkedIn", "https://www.linkedin.com/in/hariharan-b-mech"],
     ],
   },
+
+  {
+    name: "Sivasangkari",
+    image: SivaSankari,
+    roles: ["Mod", "Hackathon Manager"],
+    description:
+      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
+    links: [
+      ["Portfolio", "https://sivasankari.vercel.app/"],
+      ["LinkedIn", "https://www.linkedin.com/in/sivasangkari-k-aiml"],
+    ],
+  },
+];
+
+const coOrds: dbSchema[] = [
   {
     name: "Aderine Perez",
     image: Aderine,
@@ -139,24 +154,12 @@ const managers: dbSchema[] = [
   {
     name: "Sneka",
     image: Sneka,
-    roles: ["Mod", "Content Creation Team", "Overall Co-ordinator"],
+    roles: ["Mod", "Event Management", "Overall Co-ordinator"],
     description:
       "I am a passionate learner and I have participated in  hackathons and worked on innovative ideas and solutions. I have a Good academic background and focus on building practical skills and programming knowledge. I actively take part in internships and projects to improve myself and gain hands-on experience. With curiosity and a proactive approach, I aim to grow and make a positive impact in my field.",
     links: [
       ["Instagram", "https://www.instagram.com"],
       ["LinkedIn", "https://www.linkedin.com/in/sneka-rt"],
-    ],
-  },
-
-  {
-    name: "Sivasangkari",
-    image: SivaSankari,
-    roles: ["Mod", "Hackathon Management"],
-    description:
-      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
-    links: [
-      ["Portfolio", "https://sivasankari.vercel.app/"],
-      ["LinkedIn", "https://www.linkedin.com/in/sivasangkari-k-aiml"],
     ],
   },
 ];
@@ -308,22 +311,23 @@ const team: dbSchema[] = [
       ["Github", "https://github.com/Nitish-Rajendran"],
     ],
   },
+];
 
+const founder: dbSchema[] = [
   {
     name: "Prashanth (StarOne01)",
     image: Me,
       // "https://i.cdn.newsbytesapp.com/images/28755281716927168.jpeg?tr=w-720",
     roles: ["Mentor", "Mod","MERN Developer", "ML Modeler", "CyberSec", "Compiler + Kernel Cook", "Flutter Developer", "Founder"],
     description:
-      "I’m someone who loves diving deep into how things work, whether it’s technology like cybersecurity, operating systems, and networks, or broader topics like cosmology and human psychology. I enjoy hands-on learning and exploring areas like electronics, cryptography, and even racing. I’m also passionate about open-source projects and finding creative ways to solve real-world problems. For me, it’s all about learning, growing, and making a meaningful impact through the things I’m passionate about.",
+      "Heya! Welcome, I’m someone who loves diving deep into how things work, whether it’s technology like cybersecurity, operating systems, and networks, or broader topics like cosmology and human psychology. I enjoy hands-on learning and exploring areas like electronics, cryptography, and even racing. I’m also passionate about open-source projects and finding creative ways to solve real-world problems. For me, it’s all about learning, growing, and making a meaningful impact through the things I’m passionate about.",
     links: [
       ["Portfolio", "https://starone01.github.io/"],
       ["Github", "https://github.com/StarOne01/"],
     ],
   },
-
 ];
 
 export type { dbSchema };
 export default managers;
-export { mentors, team };
+export { mentors, team, coOrds, founder };
