@@ -15,6 +15,7 @@ import Abhi from "../public/Abhi.jpeg";
 import Me from "../public/Me.jpeg";
 import Sneka from "../public/Sneka.jpeg";
 import Rithika from "../public/Rithika.jpeg";
+import Agalya from "../public/Agalya.jpeg"; 
 import { StaticImageData } from "next/image";
 
 type dbSchema = {
@@ -140,6 +141,17 @@ const team: dbSchema[] = [
     links: [
       ["Linkedin", "https://www.linkedin.com/in/abhishek-v-?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"],
       ["Instagram", "https://www.instagram.com/_abhishek._3?igsh=MWVoN2owYnMwNzZ4dw=="],
+    ],
+  },
+  {
+    name: "Agalyaa",
+    image: Agalya,
+    roles: ["Mod", "Hackathon Management"],
+    description:
+      "Enthusiastic coding enthusiast with a solid foundation in programming and a keen interest in software development. Proficient in languages like Python, Java and C , with basic knowledge of web technologies such as HTML, CSS, and JavaScript. Passionate about learning new technologies, solving problems and building projects that enhance my experience.",
+    links: [
+      ["Instagram", "https://www.instagram.com/"],
+      ["LinkedIn", "https://www.linkedin.com/in/agalyaa-k-i-06a8a830a"],
     ],
   },
   {
