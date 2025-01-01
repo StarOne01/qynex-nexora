@@ -13,9 +13,12 @@ import Kunguma from "../public/Kunguma.jpeg";
 import Sujay from "../public/Sujay.jpeg";
 import Abhi from "../public/Abhi.jpeg";
 import Me from "../public/Me.jpeg";
+import Aderine from "../public/Aderine.jpg";
+import Sunil from "../public/Sunil.jpeg";
 import Sneka from "../public/Sneka.jpeg";
 import Rithika from "../public/Rithika.jpeg";
 import Agalya from "../public/Agalya.jpeg"; 
+import Sweatha from "../public/Sweatha.jpg";
 import { StaticImageData } from "next/image";
 
 type dbSchema = {
@@ -97,9 +100,20 @@ const managers: dbSchema[] = [
     ],
   },
   {
+    name: "Aderine ",
+    image: Aderine,
+    roles: ["Mod", "Overall Co-ordinator"],
+    description:
+      "Hi, I’m Aderine, a CSE undergraduate from SNS College of Engineering, passionate about coding, UI/UX design, and building impactful projects. I’ve completed a masterclass in UI/UX design, gained experience in frontend development. I aim to innovate continuously, solve real-world problems, and eventually become a billionaire while inspiring others through my journey.",
+    links: [
+      ["LinkedIn", "https://www.linkedin.com/in/aderine-perez"],
+      ["Instagram", "https://www.instagram.com/aderine_2487/profilecard/?igsh=cW1kbzFwcG43amdn"],
+    ],
+  },
+  {
     name: "Karthikeyan C",
     image: Karthi,
-    roles: ["Mod", "Head Co-ordinator"],
+    roles: ["Mod", "Overall Co-ordinator"],
     description:
       "I am Karthikeyan, a student with a strong passion for management and leadership. Academically, I excel in subjects that require critical thinking and problem-solving, and I enjoy applying these skills to real-world situations. Outside the classroom, I have taken on various leadership roles, where I've organized events, managed projects, and worked with diverse teams. I’m known for my ability to delegate tasks effectively, prioritize responsibilities, and keep teams motivated and focused on goals. My strong communication and organizational skills, along with my strategic thinking, make me confident in my ability to lead and manage successfully in any setting.",
     links: [
@@ -107,6 +121,18 @@ const managers: dbSchema[] = [
       ["LinkedIn", "https://www.linkedin.com/in/nandhakrishnanp/"],
     ],
   },
+  {
+    name: "Sneka",
+    image: Sneka,
+    roles: ["Mod", "Content Creation Team", "Overall Co-ordinator"],
+    description:
+      "I am a passionate learner and I have participated in  hackathons and worked on innovative ideas and solutions. I have a Good academic background and focus on building practical skills and programming knowledge. I actively take part in internships and projects to improve myself and gain hands-on experience. With curiosity and a proactive approach, I aim to grow and make a positive impact in my field.",
+    links: [
+      ["Instagram", "https://www.instagram.com"],
+      ["LinkedIn", "https://www.linkedin.com/in/sneka-rt"],
+    ],
+  },
+
   {
     name: "Sivasangkari",
     image: SivaSankari,
@@ -116,17 +142,6 @@ const managers: dbSchema[] = [
     links: [
       ["Portfolio", "https://sivasankari.vercel.app/"],
       ["LinkedIn", "https://www.linkedin.com/in/sivasangkari-k-aiml"],
-    ],
-  },
-  {
-    name: "Sneka",
-    image: Sneka,
-    roles: ["Mod", "Content Creation Manager", "Head Co-ordinator"],
-    description:
-      "I'm a storyteller at heart, translating concepts into captivating visuals. With a deep understanding of video editing principles and a passion for pushing creative boundaries, I transform raw footage into polished, engaging productions. Whether it's a dynamic commercial, a thought-provoking documentary, or a captivating short film, I bring a unique blend of technical skill and artistic vision to every project.",
-    links: [
-      ["Instagram", "https://www.instagram.com/hariharanbs18"],
-      ["LinkedIn", "https://www.linkedin.com/in/hariharan-b-mech"],
     ],
   },
 ];
@@ -166,6 +181,17 @@ const team: dbSchema[] = [
     ],
   },
   {
+    name: "Sooraj S Sunil",
+    image: Sunil,
+    roles: [ "Content Creation Team"],
+    description:
+    "Hello, my name is Sooraj S Sunil. I am currently pursuing a degree in Computer Science and Engineering at SNS College of Technology, Coimbatore. Alongside my studies, I am a passionate video editor, creating engaging and innovative content that revolves around the art of video editing",
+    links: [
+      ["Instagram", "https://www.instagram.com/x_.iuss_/profilecard/?igsh=YnN2c3gzangxank4"],
+      ["LinkedIn", "https://www.linkedin.com/in/soorajssunil"],
+    ],
+  },
+  {
     name: "Priya",
     image: Priya,
     roles: ["Mod"],
@@ -174,6 +200,51 @@ const team: dbSchema[] = [
     links: [
       ["Portfolio", "https://priya.vercel.app/"],
       ["LinkedIn", "https://www.linkedin.com/in/priya-s-8a3b1b1b3/"],
+    ],
+  },
+  {
+    name: "Sweatha",
+    image: Sweatha,
+    roles: ["Event Management"],
+    description:
+      "I  am a editor and designer who love to create new  innovative ideas and contents and also willing to learn more about designing,wed development and also I am a hard-working and sportive person.I have a good leadership quality which I more important in team work.I am looking for new opportunities to learn and work with the experts and learners about designing.",
+    links: [
+      ["LinkedIn", "https://www.linkedin.com/in/siva-sankari-s-8a3b1b1b3/"],
+      ["Instagram", "https://www.instagram"],
+    ],
+  },
+
+  {
+    name: "Sujay Krishna RP",
+    image: Sujay,
+    roles: ["Mod", "Event Management"],
+    description:
+      "A dynamic and creative Teenager with a passion for Innovation, Event Management, and Culinary Arts, currently pursuing a Bachelor's Degree in Food Technology. Driven by the motto, Being Happy is by Making Others Happy, they excel at blending their love for Creating New Things with Organizing Memorable Events. With Cooking as a cherished hobby, they find joy in crafting unique Culinary Experiences that bring smiles to those around them, reflecting their Compassionate and Enterprising Spirit.",
+    links: [
+      ["LinkedIn", " https://www.linkedin.com/in/sujay-krishna"],
+      ["Instagram", "https://www.instagram.com/sujaykrishna.rp"],
+    ],
+  },
+  {
+    name: "Priyadharshini",
+    image: PriyaDharshini,
+    roles: ["Mod", "Content Creation Team"],
+    description:
+      "I am a designer who loves to create something new and innovation and I always learn new things  I am a hard and smart working person and spotive person I am looking for a new opportunities to learn and grow as  designer.",
+    links: [
+      ["LinkedIn", "https://www.linkedin.com/in/priyadharshini-g---"],
+      ["Instagram", "https://www.linkedin.com/in/priyadharshini-g---"]
+    ],
+  },
+  {
+    name: "Kunguma Sri Varthini",
+    image: Kunguma,
+    roles: ["Mod", "Content Creation Team"],
+    description:
+      "As a highly enthusiastic and passionate individual, I approach every challenge with dedication and excellence. With my natural leadership skills and guidance, I empower high-performing teams to achieve exceptional results and drive success.",
+    links: [
+      ["Portfolio", "https://sivasankari.vercel.app/"],
+      ["LinkedIn", "https://www.linkedin.com/in/siva-sankari-s-8a3b1b1b3/"],
     ],
   },
   {
@@ -188,39 +259,6 @@ const team: dbSchema[] = [
     ],
   },
 
-  {
-    name: "Sujay Krishna RP",
-    image: Sujay,
-    roles: ["Mod", "Event Management"],
-    description:
-      "A dynamic and creative Teenager with a passion for Innovation, Event Management, and Culinary Arts, currently pursuing a Bachelor's Degree in Food Technology. Driven by the motto, Being Happy is by Making Others Happy, they excel at blending their love for Creating New Things with Organizing Memorable Events. With Cooking as a cherished hobby, they find joy in crafting unique Culinary Experiences that bring smiles to those around them, reflecting their Compassionate and Enterprising Spirit.",
-    links: [
-      ["LinkedIn", " https://www.linkedin.com/in/sujay-krishna"],
-      ["Mail", "mailto:sujayb2w@gmail.com"],
-    ],
-  },
-  {
-    name: "Priya Dharshini",
-    image: PriyaDharshini,
-    roles: ["Mod", "Content Creation Team"],
-    description:
-      "I am a designer who loves to create something new and innovation and I always learn new things  I am a hard and smart working person and spotive person I am looking for a new opportunities to learn and grow as  designer.",
-    links: [
-      ["Portfolio", "https://sivasankari.vercel.app/"],
-      ["LinkedIn", "https://www.linkedin.com/in/siva-sankari-s-8a3b1b1b3/"],
-    ],
-  },
-  {
-    name: "Kunguma Sri Varthini",
-    image: Kunguma,
-    roles: ["Mod", "Content Creation Team"],
-    description:
-      "As a highly enthusiastic and passionate individual, I approach every challenge with dedication and excellence. With my natural leadership skills and guidance, I empower high-performing teams to achieve exceptional results and drive success.",
-    links: [
-      ["Portfolio", "https://sivasankari.vercel.app/"],
-      ["LinkedIn", "https://www.linkedin.com/in/siva-sankari-s-8a3b1b1b3/"],
-    ],
-  },
   {
     name: "Prashanth (StarOne01)",
     image: Me,
