@@ -4,155 +4,42 @@ import Image from "next/image";
 import { Do_Hyeon, Bungee_Hairline } from "next/font/google";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Nithish from "../public/nithish.jpeg";
-import Sachin from "../public/sachin.jpeg";
-import Nandha from "../public/Nandha.jpg";
-import Gurubaran from "../public/Gurubaran.jpeg";
-import Hariharan from "../public/Hariharan.jpeg";
-import Priya from "../public/Priya.jpeg";
-import RajaGuru from "../public/RajaGuru.jpeg";
-import Saran from "../public/Saran.jpeg";
-import SivaSankari from "../public/SivaSankari.jpeg";
-import Karthi from "../public/Karthi.jpg";
-import { useEffect } from "react";
-import { StaticImageData } from "next/image";
+import { use, useEffect, useState } from "react";
+import managers, { mentors, team } from "../data/db";
+import type { dbSchema } from "../data/db";
 
 const hyeon = Do_Hyeon({ subsets: ["latin"], weight: "400" });
 const bungee = Bungee_Hairline({ subsets: ["latin"], weight: "400" });
 
-type dbSchema = {
-  name: string;
-  image: string | StaticImageData;
-  roles: string[];
-  description: string;
-  links: [[string, string], [string, string]];
-};
+export default function Home() {
 
-const db: dbSchema[] = [
-  {
-    name: "Sachin PJ",
-    image: Sachin,
-    roles: ["Mod", "Events Manager"],
-    description:
-      "A typical tech nerd, but with curiosity to prompt out any topic and understand it patiently. Tech enthusiast with a knack for deep dives into niche topics. Skilled in system design, management, and maintenance. Always open for discussions—let's connect and brainstorm!",
-    links: [
-      ["Linkedin", "https://www.linkedin.com/in/nitish--rajendran"],
-      ["Github", "https://github.com/Nitish-Rajendran"],
-    ],
-  },
-  {
-    name: "Nitish",
-    image: Nithish,
-    roles: ["Mod", "Hackathon Management"],
-    description:
-      "A typical tech nerd, but with curiosity to prompt out any topic and understand it patiently. Tech enthusiast with a knack for deep dives into niche topics. Skilled in system design, management, and maintenance. Always open for discussions—let's connect and brainstorm!",
-    links: [
-      ["Linkedin", "https://www.linkedin.com/in/nitish--rajendran"],
-      ["Github", "https://github.com/Nitish-Rajendran"],
-    ],
-  },
-  {
-    name: "Nandha Krishnan",
-    image: Nandha,
-    roles: ["Mentor", "MERN Developer"],
-    description:
-      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
-    links: [
-      ["Portfolio", "https://nandhakrishnan.vercel.app/"],
-      ["LinkedIn", "https://www.linkedin.com/in/nandhakrishnanp/"],
-    ],
-  },
-  {
-    name: "Karthikeyan C",
-    image: Karthi,
-    roles: ["Mod", "Head Co-ordinator"],
-    description:
-      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
-    links: [
-      ["Portfolio", "https://nandhakrishnan.vercel.app/"],
-      ["LinkedIn", "https://www.linkedin.com/in/nandhakrishnanp/"],
-    ],
-  },
+  const [currentSection, setCurrentSection] = useState("Intro");
 
-  {
-    name: "Prashanth (StarOne01)",
-    image:
-      "https://i.cdn.newsbytesapp.com/images/28755281716927168.jpeg?tr=w-720",
-    roles: ["Mentor", "Mod", "Founder"],
-    description:
-      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
-    links: [
-      ["Portfolio", "https://starone01.github.io/"],
-      ["Github", "https://github.com/StarOne01/"],
-    ],
-  },
-  {
-    name: "Gurubaran",
-    image: Gurubaran,
-    roles: ["Mentor", "MERN Developer"],
-    description:
-      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
-    links: [
-      ["Portfolio", "https://gurubaran.vercel.app/"],
-      ["LinkedIn", "https://www.linkedin.com/in/gurubaran-s-4b7b1b1b3/"],
-    ],
-  },
-  {
-    name: "Hariharan",
-    image: Hariharan,
-    roles: ["Mod", "Content Creation Manager"],
-    description:
-      "I'm a storyteller at heart, translating concepts into captivating visuals. With a deep understanding of video editing principles and a passion for pushing creative boundaries, I transform raw footage into polished, engaging productions. Whether it's a dynamic commercial, a thought-provoking documentary, or a captivating short film, I bring a unique blend of technical skill and artistic vision to every project.",
-    links: [
-      ["Instagram", "https://www.instagram.com/hariharanbs18"],
-      ["LinkedIn", "https://www.linkedin.com/in/hariharan-b-mech"],
-    ],
-  },
-  {
-    name: "Priya",
-    image: Priya,
-    roles: ["Mentor", "MERN Developer"],
-    description:
-      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
-    links: [
-      ["Portfolio", "https://priya.vercel.app/"],
-      ["LinkedIn", "https://www.linkedin.com/in/priya-s-8a3b1b1b3/"],
-    ],
-  },
-  {
-    name: "Raja Guru",
-    image: RajaGuru,
-    roles: ["Mentor", "MERN Developer"],
-    description:
-      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
-    links: [
-      ["Portfolio", "https://rajaguru.vercel.app/"],
-      ["LinkedIn", "https://www.linkedin.com/in/raja-guru-s-8a3b1b1b3/"],
-    ],
-  },
-  {
-    name: "Saran",
-    image: Saran,
-    roles: ["Mentor", "MERN Developer"],
-    description:
-      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
-    links: [
-      ["Portfolio", "https://saran.vercel.app/"],
-      ["LinkedIn", "https://www.linkedin.com/in/saran-s-8a3b1b1b3/"],
-    ],
-  },
-  {
-    name: "Siva Sankari",
-    image: SivaSankari,
-    roles: ["Mentor", "MERN Developer"],
-    description:
-      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
-    links: [
-      ["Portfolio", "https://sivasankari.vercel.app/"],
-      ["LinkedIn", "https://www.linkedin.com/in/siva-sankari-s-8a3b1b1b3/"],
-    ],
-  },
-];
+  const handleScroll = () => {
+    const sections = document.querySelectorAll('section');
+    let foundSection = currentSection;
+
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+        foundSection = section.id.charAt(0).toUpperCase() + section.id.slice(1);;
+      }
+    });
+
+    if (foundSection !== currentSection) {
+      setCurrentSection(foundSection);
+    }
+
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [currentSection]);
+
 function cards(data: dbSchema) {
   return (
     <div
@@ -162,7 +49,7 @@ function cards(data: dbSchema) {
         hyeon.className
       }
     >
-      <div className="flex flex-col max-w-[600px] gap-8 row-start-2 items-center sm:items-start">
+      <div className="flex mt-8 flex-col max-w-[600px] gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="rounded-lg"
           src={data.image}
@@ -174,12 +61,14 @@ function cards(data: dbSchema) {
         />
         <div className="text-4xl text-center sm:text-left">{data.name}</div>
 
-        <ul className="flex gap-2 text-sm font-black flex-row">
+        <ul className="flex gap-1 text-sm font-black flex-row flex-wrap justify-center sm:justify-start">
           {data.roles.map((role) => (
-            <li key={role + data.name} data-aos="fade-in">
-              <span className="border-2 border-[#9b9b9b] px-3 py-2 rounded-lg">
-                {role}
-              </span>
+            <li
+              key={role + data.name}
+              data-aos="fade-in"
+              className="border-2 border-[#9b9b9b] px-3 py-2 rounded-lg"
+            >
+              {role}
             </li>
           ))}
         </ul>
@@ -212,19 +101,21 @@ function cards(data: dbSchema) {
   );
 }
 
-function Cards({ props }: { props: dbSchema[] }) {
-  return (
-    <div className="grid grid-cols-1 gap-8 sm:gap-16">
+function Cards({ props, role }: { props: dbSchema[]; role: string }) {
+ return (
+    <section
+    id={role}
+      className="grid grid-cols-1 z-0 section gap-8 sm:gap-16"
+    >
       {props.map((db: dbSchema) => cards(db))}
-    </div>
+    </section>
   );
 }
-
 function Hero() {
   return (
-    <div
+    <section id="hello"
       className={
-        "bg-cover bg-fixed bg-[url(https://wallpapershome.com/images/pages/pic_h/26430.jpg)] text-white text-center  snap-start  " +
+        "bg-cover bg-fixed bg-[url(https://wallpapershome.com/images/pages/pic_h/26430.jpg)] text-white text-center z-50  snap-start  " +
         bungee.className
       }
     >
@@ -237,13 +128,13 @@ function Hero() {
           <span className="text-5xl">Nexora</span>
         </h1>
       </div>
-    </div>
+    </section>
   );
 }
 
 function Intro() {
   return (
-    <div
+    <section id="intro"
       className={
         "max-w-[800px] flex flex-col justify-evenly min-h-svh mx-auto p-8 sm:p-20 snap-start " +
         hyeon.className
@@ -255,7 +146,7 @@ function Intro() {
           <span className="text-5xl">Nexora</span>
         </h1>
       </div>
-      <p className="text-md mt-4  font-[family-name:var(--font-geist-mono)]">
+      <p className="text-md text-center mt-4 font-[family-name:var(--font-geist-mono)]">
         We are a team of passionate developers, designers, and creators who love
         to build and design things. We are always looking for new opportunities
         to learn and grow as developers and designers. We love to work on
@@ -264,11 +155,40 @@ function Intro() {
         always looking for new opportunities to learn and grow as developers and
         designers.
       </p>
+    </section>
+  );
+}
+
+function Tag() {
+  return (
+    <div className="max-w-[800px] bottom-5 bg-black right-5 mx-auto flex justify-end fixed">
+      <div
+        className={
+          "border-2 border-[#9b9b9b] px-3 py-2 rounded-lg font-black bottom-4 right-5 border-solid transition-colors flex items-center justify-center gap-2 text-xs " +
+          hyeon.className
+        }
+      >
+      {currentSection}
+      </div>
     </div>
   );
 }
 
-export default function Home() {
+function Nav() {
+  return (
+    <nav className="flex z-10 fixed justify-around backdrop-blur-sm min-w-full items-center p-4">
+      <div  className={"text-base font-bold " + hyeon.className}>
+        Qynex Nexora
+      </div>
+      <div className="flex gap-4 text-[12px] font-[family-name:var(--font-geist-mono)]">
+        <a href="#mentors">Mentors</a>
+        <a href="#managers">Managers</a>
+        <a href="#team">Team</a>
+      </div>
+    </nav>
+  );
+}
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -277,9 +197,13 @@ export default function Home() {
   }, []);
   return (
     <>
+      <Nav />
       <Hero />
       <Intro />
-      <Cards props={db} />
+      <Cards props={mentors} role="mentors" />
+      <Cards props={managers} role="managers" />
+      <Cards props={team} role="team" />
+      <Tag />
     </>
   );
 }
