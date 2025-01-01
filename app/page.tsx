@@ -61,7 +61,7 @@ function cards(data: dbSchema) {
         />
         <div className="text-4xl text-center sm:text-left">{data.name}</div>
 
-        <ul className="flex gap-1 text-sm font-black flex-row flex-wrap justify-center sm:justify-start">
+        <ul className="flex gap-2 text-sm font-black flex-row flex-wrap justify-center sm:justify-start">
           {data.roles.map((role) => (
             <li
               key={role + data.name}
@@ -177,10 +177,10 @@ function Tag() {
 function Nav() {
   return (
     <nav className="flex z-10 fixed justify-around backdrop-blur-sm min-w-full items-center p-4">
-      <div  className={"text-base font-bold " + hyeon.className}>
+      <div  className={"text-xl font-bold " + hyeon.className}>
         Qynex Nexora
       </div>
-      <div className="flex gap-4 text-[12px] font-[family-name:var(--font-geist-mono)]">
+      <div className="flex gap-4 text-[13px] font-[family-name:var(--font-geist-mono)]">
         <a href="#mentors">Mentors</a>
         <a href="#managers">Managers</a>
         <a href="#team">Team</a>

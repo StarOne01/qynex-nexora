@@ -15,9 +15,13 @@ import Abhi from "../public/Abhi.jpeg";
 import Me from "../public/Me.jpeg";
 import Aderine from "../public/Aderine.jpg";
 import Sunil from "../public/Sunil.jpeg";
+import Poorani from "../public/poorani.png";
+import Srimathi from "../public/srimathi.jpeg";
+import Vishanth from "../public/Vishanth.jpeg";
 import Sneka from "../public/Sneka.jpeg";
 import Rithika from "../public/Rithika.jpeg";
 import Agalya from "../public/Agalya.jpeg"; 
+import Navdeep from "../public/navdeep.png";
 import Sweatha from "../public/Sweatha.jpg";
 import { StaticImageData } from "next/image";
 
@@ -30,6 +34,17 @@ type dbSchema = {
 };
 
 const mentors: dbSchema[] = [
+  {
+    name: "Navdeep",
+    image: Navdeep,
+    roles: ["Mentor", "MERN + LAMP developer", "ML Modeler",  "Unity Developer "],
+    description:
+      "I am Navdeep, A versatile Full Stack Developer with expertise beyond the MERN stack, Navdeep is an AI/ML advocate, game developer, and entrepreneur. With a flair for graphic design and proficiency in tools like Photoshop and Illustrator, Navdeep seamlessly blends technical innovation with creative artistry. They excel in designing and delivering scalable, future-ready applications while crafting visually stunning graphics and interfaces. Driven by an entrepreneurial mindset, Navdeep thrives at the intersection of technology, creativity, and impactful problem-solving.",
+    links: [
+      ["Portfolio", "https://navdeep.vercel.app/"],
+      ["LinkedIn", "http://www.linkedin.com/in/navdeep-navdeep"],
+    ],
+  },
   {
     name: "Nandha Krishnan",
     image: Nandha,
@@ -100,7 +115,7 @@ const managers: dbSchema[] = [
     ],
   },
   {
-    name: "Aderine ",
+    name: "Aderine Perez",
     image: Aderine,
     roles: ["Mod", "Overall Co-ordinator"],
     description:
@@ -165,9 +180,11 @@ const team: dbSchema[] = [
     description:
       "Enthusiastic coding enthusiast with a solid foundation in programming and a keen interest in software development. Proficient in languages like Python, Java and C , with basic knowledge of web technologies such as HTML, CSS, and JavaScript. Passionate about learning new technologies, solving problems and building projects that enhance my experience.",
     links: [
-      ["Instagram", "https://www.instagram.com/"],
       ["LinkedIn", "https://www.linkedin.com/in/agalyaa-k-i-06a8a830a"],
-    ],
+      ["Github", "https://github.com/snsctagalyaa"],
+
+    
+],
   },
   {
     name: "Rithika",
@@ -194,7 +211,7 @@ const team: dbSchema[] = [
   {
     name: "Priya",
     image: Priya,
-    roles: ["Mod"],
+    roles: ["Mod", "Content Creation Team"],
     description:
       "Passionate about crafting seamless user experiences, I'm a front-end developer skilled in HTML, CSS, JavaScript, and Kotlin, Java. I have an experience in SQL and AWS. I'm currently expanding my skills in mobile app development to create innovative and engaging applications.",
     links: [
@@ -207,17 +224,50 @@ const team: dbSchema[] = [
     image: Sweatha,
     roles: ["Event Management"],
     description:
-      "I  am a editor and designer who love to create new  innovative ideas and contents and also willing to learn more about designing,wed development and also I am a hard-working and sportive person.I have a good leadership quality which I more important in team work.I am looking for new opportunities to learn and work with the experts and learners about designing.",
+      "I  am an editor and designer who love to create new  innovative ideas and contents and also willing to learn more about designing,web development and also I am a hard-working and sportive person.I have a good leadership quality which I more important in team work.I am looking for new opportunities to learn and work with the experts and learners about designing.",
     links: [
       ["LinkedIn", "https://www.linkedin.com/in/siva-sankari-s-8a3b1b1b3/"],
       ["Instagram", "https://www.instagram"],
     ],
   },
+  {
+    name: "Poorani",
+    image: Poorani,
+    roles: ["Event Management"],
+    description:
+      "I am an designer and developer with an innovative new ideas and creative ideas and willing to learn about new things which include web development and app development and also I am a enthusiastic learner with engaging personality.I am very punctual and I have a good leadership quality. And I am looking for good new opportunities to work with expertise and also looking for learn new things.",
+    links: [
+      ["LinkedIn", "https://www.linkedin.com/in/poorani-ramesh"],
+      ["Instagram", "https://www.instagram.com/lil_._blossom/profilecard/?igsh=MTNwaW5zNGJocGVoeg=="],
+    ],
+  },
+  {
+    name: "Srimathi",
+    image: Srimathi,
+    roles: ["Event Management"],
+    description:
+      "I'm a designer and developer with restyling ideas. My leadership quality makes me even more confident. I have coding skills in C, C++ and Java.  I am an enthusiastic person looking forward to new opportunities that expose my designing and developing skills.",
+    links: [
+      ["LinkedIn", "https://www.linkedin.com/in/srimathi-s-8a3b1b1b3/"],
+      ["Instagram", "https://www.instagram.com/srimathi_18/"],
+    ],
+  },
 
   {
-    name: "Sujay Krishna RP",
+    name: "Vishanth",
+    image: Vishanth,
+    roles: ["Content Creation Team"],
+    description:
+      "I specialize in video editing using CapCut, where I create polished, visually engaging content with ease. Additionally, I am an intermediate user of Adobe Premiere Pro and After Effects, leveraging these tools for more advanced projects involving transitions, effects, and storytelling.",
+    links: [
+      ["LinkedIn", "https://www.linkedin.com/in/vishanthviswanathan"],
+      ["Instagram", "https://www.instagram.com/vishanth._.03?igsh=Y2p2aGVxdG9kOGZv"],
+    ],
+  },
+  {
+    name: "Sujay Krishna",
     image: Sujay,
-    roles: ["Mod", "Event Management"],
+    roles: ["Event Management"],
     description:
       "A dynamic and creative Teenager with a passion for Innovation, Event Management, and Culinary Arts, currently pursuing a Bachelor's Degree in Food Technology. Driven by the motto, Being Happy is by Making Others Happy, they excel at blending their love for Creating New Things with Organizing Memorable Events. With Cooking as a cherished hobby, they find joy in crafting unique Culinary Experiences that bring smiles to those around them, reflecting their Compassionate and Enterprising Spirit.",
     links: [
@@ -250,7 +300,7 @@ const team: dbSchema[] = [
   {
     name: "Nitish",
     image: Nithish,
-    roles: ["Mod", "Hackathon Management"],
+    roles: [ "Hackathon Management"],
     description:
       "A typical tech nerd, but with curiosity to prompt out any topic and understand it patiently. Tech enthusiast with a knack for deep dives into niche topics. Skilled in system design, management, and maintenance. Always open for discussions—let's connect and brainstorm!",
     links: [
@@ -263,7 +313,7 @@ const team: dbSchema[] = [
     name: "Prashanth (StarOne01)",
     image: Me,
       // "https://i.cdn.newsbytesapp.com/images/28755281716927168.jpeg?tr=w-720",
-    roles: ["Mentor", "Mod", "Founder"],
+    roles: ["Mentor", "Mod","MERN Developer", "ML Modeler", "CyberSec", "Compiler + Kernel Cook", "Flutter Developer", "Founder"],
     description:
       "I’m someone who loves diving deep into how things work, whether it’s technology like cybersecurity, operating systems, and networks, or broader topics like cosmology and human psychology. I enjoy hands-on learning and exploring areas like electronics, cryptography, and even racing. I’m also passionate about open-source projects and finding creative ways to solve real-world problems. For me, it’s all about learning, growing, and making a meaningful impact through the things I’m passionate about.",
     links: [
