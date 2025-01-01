@@ -124,8 +124,8 @@ function Hero() {
           className={" text-white max-h-28 " + bungee.className}
           data-aos="fade-in"
         >
-          <span className="text-8xl">Qynex</span> <br />
-          <span className="text-5xl">Nexora</span>
+          <span className="text-8xl md:text-[160px] md:relative md:bottom-10">Qynex</span> <br />
+          <span className="text-5xl md:text-[80px] md:relative md:bottom-10">Nexora</span>
         </h1>
       </div>
     </section>
@@ -161,26 +161,24 @@ function Intro() {
 
 function Tag() {
   return (
-    <div className="max-w-[800px] bottom-5 bg-black right-5 mx-auto flex justify-end fixed">
       <div
         className={
-          "border-2 border-[#9b9b9b] px-3 py-2 rounded-lg font-black bottom-4 right-5 border-solid transition-colors flex items-center justify-center gap-2 text-xs " +
+          "border-2 border-[#9b9b9b] bg-black fixed px-3 py-2 rounded-lg font-black bottom-4 right-5 border-solid transition-colors flex items-center justify-center gap-2 md:text-sm lg:text-lg text-xs " +
           hyeon.className
         }
       >
       {currentSection}
       </div>
-    </div>
   );
 }
 
 function Nav() {
   return (
     <nav className="flex z-10 fixed justify-around backdrop-blur-sm min-w-full items-center p-4">
-      <div  className={"text-xl font-bold " + hyeon.className}>
+      <div  className={"text-xl font-bold sm:text-3xl " + hyeon.className}>
         Qynex Nexora
       </div>
-      <div className="flex gap-4 text-[13px] font-[family-name:var(--font-geist-mono)]">
+      <div className="flex gap-4 text-[13px] sm:text-base font-[family-name:var(--font-geist-mono)]">
         <a href="#mentors">Mentors</a>
         <a href="#managers">Managers</a>
         <a href="#team">Team</a>

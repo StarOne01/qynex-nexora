@@ -226,8 +226,8 @@ const team: dbSchema[] = [
     description:
       "I  am an editor and designer who love to create new  innovative ideas and contents and also willing to learn more about designing,web development and also I am a hard-working and sportive person.I have a good leadership quality which I more important in team work.I am looking for new opportunities to learn and work with the experts and learners about designing.",
     links: [
-      ["LinkedIn", "https://www.linkedin.com/in/siva-sankari-s-8a3b1b1b3/"],
-      ["Instagram", "https://www.instagram"],
+      ["LinkedIn", "https://www.linkedin.com/in/sweatha-s-sudha?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"],
+      ["Instagram", "https://www.instagram.com/swea_diaries/profilecard/?igsh=NmhhYzZ3cXVqOHdu"],
     ],
   },
   {
