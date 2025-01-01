@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Do_Hyeon, Bungee_Hairline } from "next/font/google";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import managers, { mentors, team } from "../data/db";
 import type { dbSchema } from "../data/db";
 
