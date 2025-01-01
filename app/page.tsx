@@ -51,7 +51,7 @@ function cards(data: dbSchema) {
     >
       <div className="flex mt-8 flex-col max-w-[600px] gap-8 row-start-2 items-center sm:items-start">
         <Image
-          className="rounded-lg"
+          className="rounded-lg z-[-1]"
           src={data.image}
           alt="StarOne01"
           data-aos="fade-in"
@@ -105,7 +105,7 @@ function Cards({ props, role }: { props: dbSchema[]; role: string }) {
  return (
     <section
     id={role}
-      className="grid grid-cols-1 z-0 section gap-8 sm:gap-16"
+      className="grid grid-cols-1 section gap-8 sm:gap-16"
     >
       {props.map((db: dbSchema) => cards(db))}
     </section>
@@ -141,7 +141,7 @@ function Intro() {
       }
     >
       <div className="dark:bg-[#0000002f] text-center bg-[#ffffff10]  items-center flex justify-center min-w-full ">
-        <h1 className={" text-white " + bungee.className}>
+        <h1 className={" dark:text-white text-black " + bungee.className}>
           <span className="text-8xl">Qynex</span> <br />
           <span className="text-5xl">Nexora</span>
         </h1>
@@ -163,7 +163,7 @@ function Tag() {
   return (
       <div
         className={
-          "border-2 border-[#9b9b9b] bg-black fixed px-3 py-2 rounded-lg font-black bottom-4 right-5 border-solid transition-colors flex items-center justify-center gap-2 md:text-sm lg:text-lg text-xs " +
+          "border-2 border-[#9b9b9b] bg-white dark:bg-black fixed px-3 py-2 rounded-lg font-black  bottom-4 right-5 border-solid transition-colors flex items-center justify-center gap-2 md:text-sm lg:text-lg text-xs " +
           hyeon.className
         }
       >
@@ -174,8 +174,8 @@ function Tag() {
 
 function Nav() {
   return (
-    <nav className="flex z-10 fixed justify-around backdrop-blur-sm min-w-full items-center p-4">
-      <div  className={"text-xl font-bold sm:text-3xl " + hyeon.className}>
+    <nav className="flex fixed justify-around backdrop-blur-sm min-w-full items-center p-4">
+      <div  className={"text-xl dark:text-white text-black font-bold sm:text-3xl  " + hyeon.className}>
         Qynex Nexora
       </div>
       <div className="flex gap-4 text-[13px] sm:text-base font-[family-name:var(--font-geist-mono)]">
