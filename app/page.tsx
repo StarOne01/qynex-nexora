@@ -1,17 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { Do_Hyeon,Bungee_Hairline     } from "next/font/google";
+import { Do_Hyeon, Bungee_Hairline } from "next/font/google";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Nithish from "../public/nithish.jpeg";
 import Sachin from "../public/sachin.jpeg";
-import me from "../public/Me.jpeg";
 import Nandha from "../public/Nandha.jpg";
+import Gurubaran from "../public/Gurubaran.jpeg";
+import Hariharan from "../public/Hariharan.jpeg";
+import Priya from "../public/Priya.jpeg";
+import RajaGuru from "../public/RajaGuru.jpeg";
+import Saran from "../public/Saran.jpeg";
+import SivaSankari from "../public/SivaSankari.jpeg";
 import Karthi from "../public/Karthi.jpg";
 import { useEffect } from "react";
 import { StaticImageData } from "next/image";
-
 
 const hyeon = Do_Hyeon({ subsets: ["latin"], weight: "400" });
 const bungee = Bungee_Hairline({ subsets: ["latin"], weight: "400" });
@@ -72,14 +76,80 @@ const db: dbSchema[] = [
 
   {
     name: "Prashanth (StarOne01)",
-    image: me,
-      // "https://i.cdn.newsbytesapp.com/images/28755281716927168.jpeg?tr=w-720",
+    image:
+      "https://i.cdn.newsbytesapp.com/images/28755281716927168.jpeg?tr=w-720",
     roles: ["Mentor", "Mod", "Founder"],
     description:
       "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
     links: [
       ["Portfolio", "https://starone01.github.io/"],
       ["Github", "https://github.com/StarOne01/"],
+    ],
+  },
+  {
+    name: "Gurubaran",
+    image: Gurubaran,
+    roles: ["Mentor", "MERN Developer"],
+    description:
+      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
+    links: [
+      ["Portfolio", "https://gurubaran.vercel.app/"],
+      ["LinkedIn", "https://www.linkedin.com/in/gurubaran-s-4b7b1b1b3/"],
+    ],
+  },
+  {
+    name: "Hariharan",
+    image: Hariharan,
+    roles: ["Mod", "Content Creation Manager"],
+    description:
+      "I'm a storyteller at heart, translating concepts into captivating visuals. With a deep understanding of video editing principles and a passion for pushing creative boundaries, I transform raw footage into polished, engaging productions. Whether it's a dynamic commercial, a thought-provoking documentary, or a captivating short film, I bring a unique blend of technical skill and artistic vision to every project.",
+    links: [
+      ["Instagram", "https://www.instagram.com/hariharanbs18"],
+      ["LinkedIn", "https://www.linkedin.com/in/hariharan-b-mech"],
+    ],
+  },
+  {
+    name: "Priya",
+    image: Priya,
+    roles: ["Mentor", "MERN Developer"],
+    description:
+      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
+    links: [
+      ["Portfolio", "https://priya.vercel.app/"],
+      ["LinkedIn", "https://www.linkedin.com/in/priya-s-8a3b1b1b3/"],
+    ],
+  },
+  {
+    name: "Raja Guru",
+    image: RajaGuru,
+    roles: ["Mentor", "MERN Developer"],
+    description:
+      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
+    links: [
+      ["Portfolio", "https://rajaguru.vercel.app/"],
+      ["LinkedIn", "https://www.linkedin.com/in/raja-guru-s-8a3b1b1b3/"],
+    ],
+  },
+  {
+    name: "Saran",
+    image: Saran,
+    roles: ["Mentor", "MERN Developer"],
+    description:
+      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
+    links: [
+      ["Portfolio", "https://saran.vercel.app/"],
+      ["LinkedIn", "https://www.linkedin.com/in/saran-s-8a3b1b1b3/"],
+    ],
+  },
+  {
+    name: "Siva Sankari",
+    image: SivaSankari,
+    roles: ["Mentor", "MERN Developer"],
+    description:
+      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
+    links: [
+      ["Portfolio", "https://sivasankari.vercel.app/"],
+      ["LinkedIn", "https://www.linkedin.com/in/siva-sankari-s-8a3b1b1b3/"],
     ],
   },
 ];
@@ -154,13 +224,18 @@ function Hero() {
   return (
     <div
       className={
-        "bg-cover bg-fixed bg-[url(https://wallpapershome.com/images/pages/pic_h/26430.jpg)] text-white text-center backdrop:blur-lg snap-start backdrop-blur-md " + bungee.className      }
+        "bg-cover bg-fixed bg-[url(https://wallpapershome.com/images/pages/pic_h/26430.jpg)] text-white text-center  snap-start  " +
+        bungee.className
+      }
     >
-      <div className="dark:bg-[#0000002f] bg-[#ffffff10]  items-center min-h-svh flex justify-center min-w-full ">
-      <h1 className={" text-white max-h-28 " + bungee.className  }    data-aos='fade-in'>
-        <span className="text-8xl">Qynex</span> <br />
-        <span className="text-5xl">Nexora</span>
-      </h1>
+      <div className="dark:bg-[#0000002f] bg-[#ffffff10] items-center min-h-svh flex justify-center backdrop-blur-md min-w-full ">
+        <h1
+          className={" text-white max-h-28 " + bungee.className}
+          data-aos="fade-in"
+        >
+          <span className="text-8xl">Qynex</span> <br />
+          <span className="text-5xl">Nexora</span>
+        </h1>
       </div>
     </div>
   );
@@ -168,12 +243,17 @@ function Hero() {
 
 function Intro() {
   return (
-    <div className={"max-w-[800px] flex flex-col justify-evenly min-h-svh mx-auto p-8 sm:p-20 snap-start " + hyeon.className}>
+    <div
+      className={
+        "max-w-[800px] flex flex-col justify-evenly min-h-svh mx-auto p-8 sm:p-20 snap-start " +
+        hyeon.className
+      }
+    >
       <div className="dark:bg-[#0000002f] text-center bg-[#ffffff10]  items-center flex justify-center min-w-full ">
-      <h1 className={" text-white " + bungee.className  }>
-        <span className="text-8xl">Qynex</span> <br />
-        <span className="text-5xl">Nexora</span>
-      </h1>
+        <h1 className={" text-white " + bungee.className}>
+          <span className="text-8xl">Qynex</span> <br />
+          <span className="text-5xl">Nexora</span>
+        </h1>
       </div>
       <p className="text-md mt-4  font-[family-name:var(--font-geist-mono)]">
         We are a team of passionate developers, designers, and creators who love
@@ -184,7 +264,6 @@ function Intro() {
         always looking for new opportunities to learn and grow as developers and
         designers.
       </p>
-
     </div>
   );
 }
