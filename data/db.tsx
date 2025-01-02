@@ -311,6 +311,9 @@ const team: dbSchema[] = [
       ["Github", "https://github.com/Nitish-Rajendran"],
     ],
   },
+];
+
+const founder: dbSchema[] = [
   {
     name: "Prashanth (StarOne01)",
     image: Me,
@@ -325,7 +328,6 @@ const team: dbSchema[] = [
   },
 ];
 
-
 export type { dbSchema };
 export default managers;
-export { mentors, team, coOrds };
+export { mentors, team, coOrds, founder };
