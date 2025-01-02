@@ -296,7 +296,7 @@ const team: dbSchema[] = [
     description:
       "As a highly enthusiastic and passionate individual, I approach every challenge with dedication and excellence. With my natural leadership skills and guidance, I empower high-performing teams to achieve exceptional results and drive success.",
     links: [
-      ["LinkedIn", "https://www.linkedin.com/in/siva-sankari-s-8a3b1b1b3/"],
+      ["LinkedIn", "hhttps://www.linkedin.com/in/kunguma-sri-vardhini-m"],
       ["Instagram", "https://www.instagram.com/classy_girl_0318?igsh=YzljYTk1ODg3Zg=="]
     ],
   },
