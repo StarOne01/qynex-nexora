@@ -119,7 +119,7 @@ function Hero() {
         bungee.className
       }
     >
-      <div className="dark:bg-[#0000002f] bg-[#ffffff10] items-center min-h-svh flex justify-center backdrop-blur-md min-w-full ">
+      <div className="dark:bg-[#0000002f] bg-[#ffffff10] items-center min-h-svh flex justify-center backdrop-blur-sm min-w-full ">
         <h1
           className={" text-white max-h-28 " + bungee.className}
           data-aos="fade-in"
