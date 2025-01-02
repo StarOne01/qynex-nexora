@@ -196,8 +196,8 @@ const team: dbSchema[] = [
     description:
       "I am a passionate and enthusiastic coder who is strong with C, C++, Python and Java. My recent focus has been on machine learning and data science, fields in which I have already undertaken hands-on projects and hackathons. Apart from academics, I have a deep interest in event management and volunteering. As Master of Ceremonies,  I excel in organizing and hosting events. I am also an active member of international clubs like the IMUN Club and Youth Parliament, where I enjoy discussing and presenting ideas. I believe in continuous growth, both personally and professionally, and I am eager to contribute my skills and enthusiasm to impactful projects.",
     links: [
-      ["Portfolio", "https://sivasankari.vercel.app/"],
-      ["LinkedIn", "https://www.linkedin.com/in/siva-sankari-s-8a3b1b1b3/"],
+      ["LinkedIn", "https://www.linkedin.com/in/rithikavijay21"],
+      ["Instagram", "https://www.instagram.com/itz._rithu/profilecard/?igsh=aTA1dDZyeTU5NG82"]
     ],
   },
   {
@@ -296,8 +296,8 @@ const team: dbSchema[] = [
     description:
       "As a highly enthusiastic and passionate individual, I approach every challenge with dedication and excellence. With my natural leadership skills and guidance, I empower high-performing teams to achieve exceptional results and drive success.",
     links: [
-      ["Portfolio", "https://sivasankari.vercel.app/"],
       ["LinkedIn", "https://www.linkedin.com/in/siva-sankari-s-8a3b1b1b3/"],
+      ["Instagram", "https://www.instagram.com/classy_girl_0318?igsh=YzljYTk1ODg3Zg=="]
     ],
   },
   {
