@@ -72,10 +72,10 @@ const mentors: dbSchema[] = [
     image: RajaGuru,
     roles: ["Mentor", "Flutter Developer", "CyberSec", "ML Modeler"],
     description:
-      "I'm a developer and designer who loves to create and design things. I'm a full-stack developer, and I love to work on projects that involve both design and development. I have experience in web development, mobile app development, and game development. I'm always looking for new opportunities to learn and grow as a developer and designer.",
+      "I’m Raja Guru R, a software engineer passionate about app development, cybersecurity, and AI. I have experience with Flutter for app development, prompt engineering in fine tuning LLM, and skills in ethical hacking, including vulnerability analysis, penetration testing and programming malware",
     links: [
-      ["Portfolio", "https://rajaguru.vercel.app/"],
       ["LinkedIn", "https://www.linkedin.com/in/raja-guru-s-8a3b1b1b3/"],
+      ["Github", "https://github.com/rajaguru2004"]
     ],
   },
   {
@@ -194,7 +194,7 @@ const team: dbSchema[] = [
     image: Rithika,
     roles: ["Mod", "Event Management"],
     description:
-      "I am a designer who loves to create something new and innovation and I always learn new things  I am a hard and smart working person and spotive person I am looking for a new opportunities to learn and grow as  designer.",
+      "I am a passionate and enthusiastic coder who is strong with C, C++, Python and Java. My recent focus has been on machine learning and data science, fields in which I have already undertaken hands-on projects and hackathons. Apart from academics, I have a deep interest in event management and volunteering. As Master of Ceremonies,  I excel in organizing and hosting events. I am also an active member of international clubs like the IMUN Club and Youth Parliament, where I enjoy discussing and presenting ideas. I believe in continuous growth, both personally and professionally, and I am eager to contribute my skills and enthusiasm to impactful projects.",
     links: [
       ["Portfolio", "https://sivasankari.vercel.app/"],
       ["LinkedIn", "https://www.linkedin.com/in/siva-sankari-s-8a3b1b1b3/"],
