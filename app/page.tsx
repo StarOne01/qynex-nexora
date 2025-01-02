@@ -179,9 +179,7 @@ function Nav() {
         Qynex Nexora
       </div>
       <div className="flex gap-4 text-[13px] sm:text-base font-[family-name:var(--font-geist-mono)]">
-        <a href="#mentors">Mentors</a>
-        <a href="#managers">Managers</a>
-        <a href="#team">Team</a>
+        <a href="https://forms.gle/GnBfHefs5kmLZceR6">Join us!</a>
       </div>
     </nav>
   );
