@@ -46,6 +46,17 @@ const mentors: dbSchema[] = [
     ],
   },
   {
+    name: "Hariharan",
+    image: Hariharan,
+    roles: ["Mentor","Mod", "Content Creation Manager", "Event Management"],
+    description:
+      "I'm a storyteller at heart, translating concepts into captivating visuals. With a deep understanding of video editing principles and a passion for pushing creative boundaries, I transform raw footage into polished, engaging productions. Whether it's a dynamic commercial, a thought-provoking documentary, or a captivating short film, I bring a unique blend of technical skill and artistic vision to every project.",
+    links: [
+      ["Instagram", "https://www.instagram.com/hariharanbs18"],
+      ["LinkedIn", "https://www.linkedin.com/in/hariharan-b-mech"],
+    ],
+  },
+  {
     name: "Nandha Krishnan",
     image: Nandha,
     roles: ["Mentor", "MERN Developer", "React Native Developer"],
@@ -103,18 +114,6 @@ const managers: dbSchema[] = [
       ["Github", "https://github.com/Nitish-Rajendran"],
     ],
   },
-  {
-    name: "Hariharan",
-    image: Hariharan,
-    roles: ["Mod", "Content Creation Manager", "Event Management"],
-    description:
-      "I'm a storyteller at heart, translating concepts into captivating visuals. With a deep understanding of video editing principles and a passion for pushing creative boundaries, I transform raw footage into polished, engaging productions. Whether it's a dynamic commercial, a thought-provoking documentary, or a captivating short film, I bring a unique blend of technical skill and artistic vision to every project.",
-    links: [
-      ["Instagram", "https://www.instagram.com/hariharanbs18"],
-      ["LinkedIn", "https://www.linkedin.com/in/hariharan-b-mech"],
-    ],
-  },
-
   {
     name: "Sivasangkari",
     image: SivaSankari,
@@ -268,7 +267,7 @@ const team: dbSchema[] = [
     ],
   },
   {
-    name: "Sujay Krishna",
+    name: "Sujay Krishna RP",
     image: Sujay,
     roles: ["Event Management"],
     description:
