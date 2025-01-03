@@ -18,9 +18,10 @@ import Sunil from "../public/Sunil.jpeg";
 import Poorani from "../public/poorani.png";
 import Srimathi from "../public/srimathi.jpeg";
 import Vishanth from "../public/Vishanth.jpeg";
+import Sinega from "../public/Sinega.jpeg";
 import Sneka from "../public/Sneka.jpeg";
 import Rithika from "../public/Rithika.jpeg";
-import Agalya from "../public/Agalya.jpeg"; 
+import Agalya from "../public/Agalya.jpeg";
 import Navdeep from "../public/navdeep.png";
 import Sweatha from "../public/Sweatha.jpg";
 import { StaticImageData } from "next/image";
@@ -37,7 +38,12 @@ const mentors: dbSchema[] = [
   {
     name: "Navdeep",
     image: Navdeep,
-    roles: ["Mentor", "MERN + LAMP developer", "ML Modeler",  "Unity Developer "],
+    roles: [
+      "Mentor",
+      "MERN + LAMP developer",
+      "ML Modeler",
+      "Unity Developer ",
+    ],
     description:
       "I am Navdeep, A versatile Full Stack Developer with expertise beyond the MERN stack, Navdeep is an AI/ML advocate, game developer, and entrepreneur. With a flair for graphic design and proficiency in tools like Photoshop and Illustrator, Navdeep seamlessly blends technical innovation with creative artistry. They excel in designing and delivering scalable, future-ready applications while crafting visually stunning graphics and interfaces. Driven by an entrepreneurial mindset, Navdeep thrives at the intersection of technology, creativity, and impactful problem-solving.",
     links: [
@@ -48,7 +54,7 @@ const mentors: dbSchema[] = [
   {
     name: "Hariharan",
     image: Hariharan,
-    roles: ["Mentor","Mod", "Content Creation Manager", "Event Management"],
+    roles: ["Mentor", "Mod", "Content Creation Manager", "Event Management"],
     description:
       "I'm a storyteller at heart, translating concepts into captivating visuals. With a deep understanding of video editing principles and a passion for pushing creative boundaries, I transform raw footage into polished, engaging productions. Whether it's a dynamic commercial, a thought-provoking documentary, or a captivating short film, I bring a unique blend of technical skill and artistic vision to every project.",
     links: [
@@ -86,7 +92,7 @@ const mentors: dbSchema[] = [
       "I’m Raja Guru R, a software engineer passionate about app development, cybersecurity, and AI. I have experience with Flutter for app development, prompt engineering in fine tuning LLM, and skills in ethical hacking, including vulnerability analysis, penetration testing and programming malware",
     links: [
       ["LinkedIn", "https://www.linkedin.com/in/raja-guru-s-8a3b1b1b3/"],
-      ["Github", "https://github.com/rajaguru2004"]
+      ["Github", "https://github.com/rajaguru2004"],
     ],
   },
   {
@@ -136,7 +142,10 @@ const coOrds: dbSchema[] = [
       "Hi, I’m Aderine, a CSE undergraduate from SNS College of Engineering, passionate about coding, UI/UX design, and building impactful projects. I’ve completed a masterclass in UI/UX design, gained experience in frontend development. I aim to innovate continuously, solve real-world problems, and eventually become a billionaire while inspiring others through my journey.",
     links: [
       ["LinkedIn", "https://www.linkedin.com/in/aderine-perez"],
-      ["Instagram", "https://www.instagram.com/aderine_2487/profilecard/?igsh=cW1kbzFwcG43amdn"],
+      [
+        "Instagram",
+        "https://www.instagram.com/aderine_2487/profilecard/?igsh=cW1kbzFwcG43amdn",
+      ],
     ],
   },
   {
@@ -171,8 +180,14 @@ const team: dbSchema[] = [
     description:
       "Aspiring Electrical and electronics engineer with a passion to explore diverse fields. I find joy in automation, embedded systems, designing, and editing, and I am currently a  member of the eKart team.",
     links: [
-      ["Linkedin", "https://www.linkedin.com/in/abhishek-v-?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"],
-      ["Instagram", "https://www.instagram.com/_abhishek._3?igsh=MWVoN2owYnMwNzZ4dw=="],
+      [
+        "Linkedin",
+        "https://www.linkedin.com/in/abhishek-v-?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      ],
+      [
+        "Instagram",
+        "https://www.instagram.com/_abhishek._3?igsh=MWVoN2owYnMwNzZ4dw==",
+      ],
     ],
   },
   {
@@ -184,9 +199,7 @@ const team: dbSchema[] = [
     links: [
       ["LinkedIn", "https://www.linkedin.com/in/agalyaa-k-i-06a8a830a"],
       ["Github", "https://github.com/snsctagalyaa"],
-
-    
-],
+    ],
   },
   {
     name: "Rithika",
@@ -196,17 +209,35 @@ const team: dbSchema[] = [
       "I am a passionate and enthusiastic coder who is strong with C, C++, Python and Java. My recent focus has been on machine learning and data science, fields in which I have already undertaken hands-on projects and hackathons. Apart from academics, I have a deep interest in event management and volunteering. As Master of Ceremonies,  I excel in organizing and hosting events. I am also an active member of international clubs like the IMUN Club and Youth Parliament, where I enjoy discussing and presenting ideas. I believe in continuous growth, both personally and professionally, and I am eager to contribute my skills and enthusiasm to impactful projects.",
     links: [
       ["LinkedIn", "https://www.linkedin.com/in/rithikavijay21"],
-      ["Instagram", "https://www.instagram.com/itz._rithu/profilecard/?igsh=aTA1dDZyeTU5NG82"]
+      [
+        "Instagram",
+        "https://www.instagram.com/itz._rithu/profilecard/?igsh=aTA1dDZyeTU5NG82",
+      ],
+    ],
+  },
+  {
+    name: "Sinega",
+    image: Sinega,
+    roles: ["Event Management"],
+    description:
+      "I am Sinega Selvakumar, an enthusiastic learner and active member of Regex Club and Xenix Association at SNSCT, with a keen interest in cloud computing and DevOps. I possess foundational skills in data analytics and cybersecurity, complemented by certifications in Python, Google Cloud Computing (NPTEL),linux and participation in events like SIH Hackathon and Qubits. I have attended multiple workshops and even a webinar to enhance my technical expertise. As an active Rotaract member, I have hosted events, engaged in volunteering activities, and developed strong leadership, collaborative, and design-thinking skills. Passionate about networking and hosting events, I am eager to explore new opportunities!",
+    links: [
+      ["LinkedIn", "https://www.linkedin.com/in/sinegaselvakumar"],
+      ["Github", "https://github.com/Sinex23/Sinex23"],
+      //
     ],
   },
   {
     name: "Sooraj S Sunil",
     image: Sunil,
-    roles: [ "Content Creation Team"],
+    roles: ["Content Creation Team"],
     description:
-    "Hello, my name is Sooraj S Sunil. I am currently pursuing a degree in Computer Science and Engineering at SNS College of Technology, Coimbatore. Alongside my studies, I am a passionate video editor, creating engaging and innovative content that revolves around the art of video editing",
+      "Hello, my name is Sooraj S Sunil. I am currently pursuing a degree in Computer Science and Engineering at SNS College of Technology, Coimbatore. Alongside my studies, I am a passionate video editor, creating engaging and innovative content that revolves around the art of video editing",
     links: [
-      ["Instagram", "https://www.instagram.com/x_.iuss_/profilecard/?igsh=YnN2c3gzangxank4"],
+      [
+        "Instagram",
+        "https://www.instagram.com/x_.iuss_/profilecard/?igsh=YnN2c3gzangxank4",
+      ],
       ["LinkedIn", "https://www.linkedin.com/in/soorajssunil"],
     ],
   },
@@ -228,8 +259,14 @@ const team: dbSchema[] = [
     description:
       "I  am an editor and designer who love to create new  innovative ideas and contents and also willing to learn more about designing,web development and also I am a hard-working and sportive person.I have a good leadership quality which I more important in team work.I am looking for new opportunities to learn and work with the experts and learners about designing.",
     links: [
-      ["LinkedIn", "https://www.linkedin.com/in/sweatha-s-sudha?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"],
-      ["Instagram", "https://www.instagram.com/swea_diaries/profilecard/?igsh=NmhhYzZ3cXVqOHdu"],
+      [
+        "LinkedIn",
+        "https://www.linkedin.com/in/sweatha-s-sudha?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      ],
+      [
+        "Instagram",
+        "https://www.instagram.com/swea_diaries/profilecard/?igsh=NmhhYzZ3cXVqOHdu",
+      ],
     ],
   },
   {
@@ -240,7 +277,10 @@ const team: dbSchema[] = [
       "I am an designer and developer with an innovative new ideas and creative ideas and willing to learn about new things which include web development and app development and also I am a enthusiastic learner with engaging personality.I am very punctual and I have a good leadership quality. And I am looking for good new opportunities to work with expertise and also looking for learn new things.",
     links: [
       ["LinkedIn", "https://www.linkedin.com/in/poorani-ramesh"],
-      ["Instagram", "https://www.instagram.com/lil_._blossom/profilecard/?igsh=MTNwaW5zNGJocGVoeg=="],
+      [
+        "Instagram",
+        "https://www.instagram.com/lil_._blossom/profilecard/?igsh=MTNwaW5zNGJocGVoeg==",
+      ],
     ],
   },
   {
@@ -263,7 +303,10 @@ const team: dbSchema[] = [
       "I specialize in video editing using CapCut, where I create polished, visually engaging content with ease. Additionally, I am an intermediate user of Adobe Premiere Pro and After Effects, leveraging these tools for more advanced projects involving transitions, effects, and storytelling.",
     links: [
       ["LinkedIn", "https://www.linkedin.com/in/vishanthviswanathan"],
-      ["Instagram", "https://www.instagram.com/vishanth._.03?igsh=Y2p2aGVxdG9kOGZv"],
+      [
+        "Instagram",
+        "https://www.instagram.com/vishanth._.03?igsh=Y2p2aGVxdG9kOGZv",
+      ],
     ],
   },
   {
@@ -285,7 +328,7 @@ const team: dbSchema[] = [
       "I am a designer who loves to create something new and innovation and I always learn new things  I am a hard and smart working person and spotive person I am looking for a new opportunities to learn and grow as  designer.",
     links: [
       ["LinkedIn", "https://www.linkedin.com/in/priyadharshini-g---"],
-      ["Instagram", "https://www.linkedin.com/in/priyadharshini-g---"]
+      ["Instagram", "https://www.linkedin.com/in/priyadharshini-g---"],
     ],
   },
   {
@@ -296,13 +339,16 @@ const team: dbSchema[] = [
       "As a highly enthusiastic and passionate individual, I approach every challenge with dedication and excellence. With my natural leadership skills and guidance, I empower high-performing teams to achieve exceptional results and drive success.",
     links: [
       ["LinkedIn", "https://www.linkedin.com/in/kunguma-sri-vardhini-m"],
-      ["Instagram", "https://www.instagram.com/classy_girl_0318?igsh=YzljYTk1ODg3Zg=="]
+      [
+        "Instagram",
+        "https://www.instagram.com/classy_girl_0318?igsh=YzljYTk1ODg3Zg==",
+      ],
     ],
   },
   {
     name: "Nitish",
     image: Nithish,
-    roles: [ "Hackathon Management"],
+    roles: ["Hackathon Management"],
     description:
       "A typical tech nerd, but with curiosity to prompt out any topic and understand it patiently. Tech enthusiast with a knack for deep dives into niche topics. Skilled in system design, management, and maintenance. Always open for discussions—let's connect and brainstorm!",
     links: [
@@ -313,8 +359,17 @@ const team: dbSchema[] = [
   {
     name: "Prashanth (StarOne01)",
     image: Me,
-      // "https://i.cdn.newsbytesapp.com/images/28755281716927168.jpeg?tr=w-720",
-    roles: ["Mentor", "Mod","MERN Developer", "ML Modeler", "CyberSec", "Compiler + Kernel Cook", "Flutter Developer", "Founder"],
+    // "https://i.cdn.newsbytesapp.com/images/28755281716927168.jpeg?tr=w-720",
+    roles: [
+      "Mentor",
+      "Mod",
+      "MERN Developer",
+      "ML Modeler",
+      "CyberSec",
+      "Compiler + Kernel Cook",
+      "Flutter Developer",
+      "Founder",
+    ],
     description:
       "Heya! Welcome, I’m someone who loves diving deep into how things work, whether it’s technology like cybersecurity, operating systems, and networks, or broader topics like cosmology and human psychology. I enjoy hands-on learning and exploring areas like electronics, cryptography, and even racing. I’m also passionate about open-source projects and finding creative ways to solve real-world problems. For me, it’s all about learning, growing, and making a meaningful impact through the things I’m passionate about.",
     links: [
@@ -323,8 +378,6 @@ const team: dbSchema[] = [
     ],
   },
 ];
-
-
 
 export type { dbSchema };
 export default managers;
