@@ -115,7 +115,7 @@ function Hero() {
   return (
     <section id="hello"
       className={
-        "bg-cover bg-fixed bg-[url(https://wallpapershome.com/images/pages/pic_h/26430.jpg)] text-white text-center z-50  snap-start  " +
+        "bg-cover bg-fixed bg-[url(https://wallpapershome.com/images/pages/pic_h/26430.jpg)] z-50 text-white text-center snap-start  " +
         bungee.className
       }
     >
@@ -174,7 +174,7 @@ function Tag() {
 
 function Nav() {
   return (
-    <nav className="flex fixed justify-around backdrop-blur-sm min-w-full items-center p-4">
+    <nav className="flex fixed justify-around -z-20 backdrop-blur-sm min-w-full items-center p-4">
       <div  className={"text-xl dark:text-white text-black font-bold sm:text-3xl  " + hyeon.className}>
         Qynex Nexora
       </div>
