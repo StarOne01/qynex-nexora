@@ -1,8 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Qynex Nexora
+
+A tech community website for developers, designers, and creators built with Next.js.
+
+## Overview
+
+Qynex Nexora is a website showcasing community members, mentors, and team structure with a modern, animated interface. The site features:
+
+- Team profiles with images and descriptions
+- Smooth scroll-snapping navigation
+- Dynamic section highlighting
+- Responsive design for mobile and desktop
+- Animated content with AOS (Animate On Scroll)
+
+## Tech Stack
+
+- [Next.js 15.1.3](https://nextjs.org/) with App Router
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [AOS](https://michalsnik.github.io/aos/) for scroll animations
+- Google Fonts (Do Hyeon, Bungee Hairline, Geist)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (v16 or newer)
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +55,39 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- app - Next.js app router components and pages
+- data - Database file with team member information
+- public - Static assets including team member images
+- tailwind.config.ts - Tailwind configuration
+- next.config.ts - Next.js configuration
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The site is configured for deployment with GitHub Pages via GitHub Actions workflow. The workflow automatically builds and deploys the site when changes are pushed to the main branch.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For manual deployment, you can build the project using:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+# or
+yarn build
+# or
+pnpm build
+# or
+bun build
+```
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To join the Qynex Nexora community, visit the link on the website or fill out the [join form](https://forms.gle/GnBfHefs5kmLZceR6).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For code contributions:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
