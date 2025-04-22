@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaLock, FaCode, FaLightbulb, FaNetworkWired, FaBrain, FaKey } from 'react-icons/fa';
 
 export default function RegistrationPage() {
@@ -32,24 +32,25 @@ export default function RegistrationPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [codeLines, setCodeLines] = useState<string[]>([]);
   const [terminalText, setTerminalText] = useState("");
-  const terminalFullText = "> Scanning for exceptional neural patterns...\n> Establishing secure connection...\n> Protocol NEXORA awaiting initialization...";
+  const [currentCodeIndex, setCurrentCodeIndex] = useState(0);
+  const terminalFullText = "> Initializing connection sequence...\n> Scanning neural patterns...\n> Protocol awaiting verification...";
   
   useEffect(() => {
-    // Generate random code snippets for background effect
+    // More modern code snippets
     const snippets = [
-      'function unlockPotential(mind) { return mind.innovate(); }',
-      'class Nexora extends CommunityOfMinds implements Future {}',
-      'if (you.think() !== others.think()) { world.evolve(); }',
-      'const innovation = async () => { await challenges.solve(); }',
-      'while(true) { greatMinds.connect(); barriers.break(); }',
-      '// The network strengthens with each node...',
-      'const impact = vision.map(idea => idea.execute());',
-      'try { comfort.escape() } catch { greatness.achieve() }',
+      'async function syncMindscape() { await consciousness.expand(); }',
+      'const reality = new Dimension({ perception: "moldable" });',
+      'for(let i of infinity) { if(i.isLimitless()) break; }',
+      'class Perception extends Reality implements Infinite {}',
+      'const [potential, setPotential] = useState(undefined);',
+      'navigator.reality.requestAccess({ credentials: "mind" });',
+      'const future = await Promise.all(dreams.map(d => d.manifest()));',
+      'try { comfort.transcend() } catch { evolution.accelerate() }',
     ];
     
     setCodeLines(snippets);
     
-    // Simulate typing effect
+    // Enhanced typing effect with cursor blink
     let i = 0;
     const typeInterval = setInterval(() => {
       if (i < terminalFullText.length) {
@@ -58,20 +59,28 @@ export default function RegistrationPage() {
       } else {
         clearInterval(typeInterval);
       }
-    }, 50);
+    }, 40);
     
-    return () => clearInterval(typeInterval);
+    // Cycle through code snippets for background effect
+    const codeRotation = setInterval(() => {
+      setCurrentCodeIndex(prev => (prev + 1) % snippets.length);
+    }, 3000);
+    
+    return () => {
+      clearInterval(typeInterval);
+      clearInterval(codeRotation);
+    };
   }, []);
   
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData(prev => ({
+      ...prev,
       [name]: value,
-    });
-  };
+    }));
+  }, []);
   
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckboxChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     
     if (name.startsWith('role-')) {
@@ -93,7 +102,7 @@ export default function RegistrationPage() {
         }
       }));
     }
-  };
+  }, []);
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -104,24 +113,59 @@ export default function RegistrationPage() {
   };
   
   return (
-    <div className="min-h-screen bg-black text-green-400 flex flex-col items-center justify-center relative overflow-hidden font-mono">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black to-slate-900 text-slate-200 flex flex-col items-center justify-center relative overflow-hidden font-sans">
+      {/* Ambient background effects */}
+      <div className="absolute inset-0 overflow-hidden opacity-50">
+        {[...Array(5)].map((_, i) => (
+          <div 
+            key={i}
+            className="absolute blur-3xl rounded-full mix-blend-screen opacity-20"
+            style={{
+              width: `${Math.random() * 40 + 10}vw`,
+              height: `${Math.random() * 40 + 10}vh`,
+              background: `radial-gradient(circle, ${['#4F46E5', '#0EA5E9', '#2563EB', '#7C3AED', '#8B5CF6'][i % 5]}, transparent)`,
+              top: `${Math.random() * 100}vh`,
+              left: `${Math.random() * 100}vw`,
+              animation: `float ${Math.random() * 20 + 40}s infinite ease-in-out`,
+              animationDelay: `${Math.random() * 10}s`
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Animated code in background */}
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden text-[rgba(255,255,255,0.03)] font-mono z-0">
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={currentCodeIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5 }}
+            className="absolute inset-0 flex items-center justify-center text-4xl whitespace-pre"
+          >
+            {codeLines[currentCodeIndex]}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
         className="z-10 w-full max-w-2xl px-4 py-8"
       >
-        <div className="border border-green-500 rounded-lg p-8 bg-black bg-opacity-80 backdrop-blur shadow-[0_0_15px_rgba(0,255,0,0.2)]">
+        <div className="rounded-xl p-8 backdrop-blur-xl backdrop-filter bg-black/30 shadow-[0_8px_32px_rgba(0,0,0,0.2)] border border-white/10">
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <h1 className="text-2xl sm:text-4xl font-bold mb-2 text-center glitch">
-              [NEXORA] <span className="text-white">INITIALIZATION</span>
+            <h1 className="text-2xl sm:text-4xl font-bold mb-2 text-center relative overflow-hidden">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500">INITIALIZATION</span>
             </h1>
-            <p className="text-sm sm:text-base text-center mb-6 text-green-300">
-              &#123; collective.consciousness(version: 1.0.0) &#125;
+            <p className="text-sm sm:text-base text-center mb-6 text-indigo-300/80">
+              &#123; v1.0 // sequence: 847392 &#125;
             </p>
           </motion.div>
           
@@ -129,25 +173,31 @@ export default function RegistrationPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="mb-8 bg-black border border-green-700 rounded p-3 text-green-400 font-mono"
+            className="mb-8 bg-black/40 backdrop-blur-sm border border-indigo-900/30 rounded-lg p-3 font-mono"
           >
-            <pre className="text-xs whitespace-pre-wrap">{terminalText}</pre>
-            <span className="inline-block h-4 w-2 bg-green-500 animate-pulse"></span>
+            <div className="flex items-center space-x-2 mb-2 text-xs text-indigo-300/70">
+              <div className="h-2 w-2 rounded-full bg-indigo-600"></div>
+              <div className="h-2 w-2 rounded-full bg-indigo-400"></div>
+              <div className="h-2 w-2 rounded-full bg-indigo-300"></div>
+              <span>terminal_847392</span>
+            </div>
+            <pre className="text-xs whitespace-pre-wrap text-indigo-100">{terminalText}</pre>
+            <span className="inline-block h-4 w-2 bg-indigo-400 animate-pulse"></span>
           </motion.div>
-          
+
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.6 }}
             className="mb-8 text-center"
           >
-            <p className="text-sm text-green-200 mb-4">
+            <p className="text-sm text-indigo-200 mb-4">
               Welcome, Pathfinder!
             </p>
             <p className="text-sm text-white mb-4">
               Qynex Nexora is not just a community — it is a movement, a culture, a rising force. We are searching for individuals who dare to dream, who believe in building, learning, and inspiring together.
             </p>
-            <p className="text-sm text-green-300 font-bold mb-6">
+            <p className="text-sm text-indigo-300 font-bold mb-6">
               This is your first step. Answer thoughtfully. We are looking for mindset over skillset.
             </p>
           </motion.div>
@@ -160,12 +210,12 @@ export default function RegistrationPage() {
               transition={{ delay: 0.8 }}
               className="space-y-6"
             >
-              <div className="border-l-2 border-green-500 pl-4 mb-8">
-                <h2 className="text-green-400 text-xl mb-4">Basic Information</h2>
+              <div className="border-l-2 border-indigo-500 pl-4 mb-8">
+                <h2 className="text-indigo-400 text-xl mb-4">Basic Information</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaCode className="mr-2" />
                       FULL NAME
                     </label>
@@ -175,13 +225,13 @@ export default function RegistrationPage() {
                       value={formData.fullName}
                       onChange={handleChange}
                       required
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                       placeholder="Your identity marker"
                     />
                   </div>
                   
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaKey className="mr-2" />
                       ROLL NUMBER / REGISTRATION NUMBER
                     </label>
@@ -191,13 +241,13 @@ export default function RegistrationPage() {
                       value={formData.registrationNumber}
                       onChange={handleChange}
                       required
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                       placeholder="Your system identifier"
                     />
                   </div>
                   
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaNetworkWired className="mr-2" />
                       DEPARTMENT AND YEAR
                     </label>
@@ -207,13 +257,13 @@ export default function RegistrationPage() {
                       value={formData.departmentYear}
                       onChange={handleChange}
                       required
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                       placeholder="Your operational sector"
                     />
                   </div>
                   
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaLock className="mr-2" />
                       PHONE NUMBER
                     </label>
@@ -223,13 +273,13 @@ export default function RegistrationPage() {
                       value={formData.phoneNumber}
                       onChange={handleChange}
                       required
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                       placeholder="Secure communication channel"
                     />
                   </div>
                   
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaNetworkWired className="mr-2" />
                       COLLEGE EMAIL ID
                     </label>
@@ -239,13 +289,13 @@ export default function RegistrationPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                       placeholder="Digital correspondence node"
                     />
                   </div>
                   
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaBrain className="mr-2" />
                       PERSONAL PROFILE (OPTIONAL)
                     </label>
@@ -254,19 +304,19 @@ export default function RegistrationPage() {
                       name="personalProfile"
                       value={formData.personalProfile}
                       onChange={handleChange}
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                       placeholder="Your digital footprint (LinkedIn, GitHub, etc.)"
                     />
                   </div>
                 </div>
               </div>
               
-              <div className="border-l-2 border-green-500 pl-4 mb-8">
-                <h2 className="text-green-400 text-xl mb-4">Understanding You</h2>
+              <div className="border-l-2 border-indigo-500 pl-4 mb-8">
+                <h2 className="text-indigo-400 text-xl mb-4">Understanding You</h2>
                 
                 <div className="space-y-6">
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaCode className="mr-2" />
                       THREE WORDS THAT BEST DESCRIBE YOU
                     </label>
@@ -276,13 +326,13 @@ export default function RegistrationPage() {
                       value={formData.threeWords}
                       onChange={handleChange}
                       required
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                       placeholder="Your core attributes (separated by commas)"
                     />
                   </div>
                   
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaLightbulb className="mr-2" />
                       WHAT ARE YOU PASSIONATE ABOUT LEARNING OR CREATING?
                     </label>
@@ -292,13 +342,13 @@ export default function RegistrationPage() {
                       onChange={handleChange}
                       required
                       rows={2}
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                       placeholder="Your cognitive drive vectors"
                     />
                   </div>
                   
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaLightbulb className="mr-2" />
                       UNLIMITED PROJECT SCENARIO
                     </label>
@@ -308,19 +358,19 @@ export default function RegistrationPage() {
                       onChange={handleChange}
                       required
                       rows={2}
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                       placeholder="If you had unlimited time and resources, what project or dream would you pursue?"
                     />
                   </div>
                 </div>
               </div>
               
-              <div className="border-l-2 border-green-500 pl-4 mb-8">
-                <h2 className="text-green-400 text-xl mb-4">The Mindset Test</h2>
+              <div className="border-l-2 border-indigo-500 pl-4 mb-8">
+                <h2 className="text-indigo-400 text-xl mb-4">The Mindset Test</h2>
                 
                 <div className="space-y-6">
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaLightbulb className="mr-2" />
                       HOW DO YOU REACT WHEN A PLAN FAILS?
                     </label>
@@ -330,13 +380,13 @@ export default function RegistrationPage() {
                       onChange={handleChange}
                       required
                       rows={2}
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                       placeholder="Your resilience algorithm"
                     />
                   </div>
                   
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaNetworkWired className="mr-2" />
                       GROUP PROJECT ROLE
                     </label>
@@ -345,7 +395,7 @@ export default function RegistrationPage() {
                       value={formData.groupRole}
                       onChange={handleChange}
                       required
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                     >
                       <option value="">Select your natural role</option>
                       <option value="Leader">Leader</option>
@@ -359,7 +409,7 @@ export default function RegistrationPage() {
                   </div>
                   
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaLightbulb className="mr-2" />
                       GUIDING MOTTO
                     </label>
@@ -368,19 +418,19 @@ export default function RegistrationPage() {
                       value={formData.motto}
                       onChange={handleChange}
                       required
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                     >
                       <option value="">Select a motto you believe in most</option>
-                      <option value="Learn and Adapt">"Learn and Adapt"</option>
-                      <option value="Build Fearlessly">"Build Fearlessly"</option>
-                      <option value="Create with Purpose">"Create with Purpose"</option>
-                      <option value="Lead with Heart">"Lead with Heart"</option>
-                      <option value="Grow Together, Shine Together">"Grow Together, Shine Together"</option>
+                      <option value="Learn and Adapt">&quot;Learn and Adapt&quot;</option>
+                      <option value="Build Fearlessly">&quot;Build Fearlessly&quot;</option>
+                      <option value="Create with Purpose">&quot;Create with Purpose&quot;</option>
+                      <option value="Lead with Heart">&quot;Lead with Heart&quot;</option>
+                      <option value="Grow Together, Shine Together">&quot;Grow Together, Shine Together&quot;</option>
                     </select>
                   </div>
                   
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaNetworkWired className="mr-2" />
                       WHAT DOES 'COMMUNITY' MEAN TO YOU?
                     </label>
@@ -390,13 +440,13 @@ export default function RegistrationPage() {
                       onChange={handleChange}
                       required
                       rows={2}
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                       placeholder="Your collective consciousness definition"
                     />
                   </div>
                   
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaLightbulb className="mr-2" />
                       COLLEGE ENVIRONMENT CHANGE
                     </label>
@@ -406,19 +456,19 @@ export default function RegistrationPage() {
                       onChange={handleChange}
                       required
                       rows={2}
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                       placeholder="If you could bring one change to the college environment, what would it be?"
                     />
                   </div>
                 </div>
               </div>
               
-              <div className="border-l-2 border-green-500 pl-4 mb-8">
-                <h2 className="text-green-400 text-xl mb-4">Availability & Contribution</h2>
+              <div className="border-l-2 border-indigo-500 pl-4 mb-8">
+                <h2 className="text-indigo-400 text-xl mb-4">Availability & Contribution</h2>
                 
                 <div className="space-y-6">
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-1">
+                    <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaNetworkWired className="mr-2" />
                       TIME COMMITMENT PER MONTH
                     </label>
@@ -427,18 +477,18 @@ export default function RegistrationPage() {
                       value={formData.timeCommitment}
                       onChange={handleChange}
                       required
-                      className="w-full bg-black border border-green-500 rounded p-2 text-green-100 focus:outline-none focus:ring-1 focus:ring-green-400"
+                      className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                     >
                       <option value="">Select your time dedication</option>
                       <option value="2-4 hours">2-4 hours</option>
                       <option value="4-6 hours">4-6 hours</option>
                       <option value="6+ hours">6+ hours</option>
-                      <option value="Whatever it takes">I'll give what it takes.</option>
+                      <option value="Whatever it takes">I&apos;ll give what it takes.</option>
                     </select>
                   </div>
                   
                   <div>
-                    <label className="flex items-center text-xs text-green-300 mb-3">
+                    <label className="flex items-center text-xs text-indigo-300 mb-3">
                       <FaLightbulb className="mr-2" />
                       ROLES YOU WOULD LOVE TO EXPLORE
                     </label>
@@ -463,9 +513,9 @@ export default function RegistrationPage() {
                             id={`role-${role}`}
                             name={`role-${role}`}
                             onChange={handleCheckboxChange}
-                            className="mr-2 border-green-500 text-green-600 focus:ring-green-500 h-4 w-4 bg-black"
+                            className="mr-2 border-indigo-500 text-indigo-600 focus:ring-indigo-500 h-4 w-4 bg-black"
                           />
-                          <label htmlFor={`role-${role}`} className="text-green-200 text-sm">
+                          <label htmlFor={`role-${role}`} className="text-indigo-200 text-sm">
                             {role}
                           </label>
                         </div>
@@ -475,8 +525,8 @@ export default function RegistrationPage() {
                 </div>
               </div>
               
-              <div className="border-l-2 border-green-500 pl-4 mb-8">
-                <h2 className="text-green-400 text-xl mb-4">Agreement</h2>
+              <div className="border-l-2 border-indigo-500 pl-4 mb-8">
+                <h2 className="text-indigo-400 text-xl mb-4">Agreement</h2>
                 
                 <div className="space-y-4">
                   <div className="flex items-start">
@@ -486,9 +536,9 @@ export default function RegistrationPage() {
                       name="agreement-respect"
                       onChange={handleCheckboxChange}
                       required
-                      className="mt-1 mr-3 border-green-500 text-green-600 focus:ring-green-500 h-4 w-4 bg-black"
+                      className="mt-1 mr-3 border-indigo-500 text-indigo-600 focus:ring-indigo-500 h-4 w-4 bg-black"
                     />
-                    <label htmlFor="agreement-respect" className="text-green-200 text-sm">
+                    <label htmlFor="agreement-respect" className="text-indigo-200 text-sm">
                       I understand that Qynex Nexora is a platform built on respect, passion, and trust. I will strive to uphold its spirit and support fellow members.
                     </label>
                   </div>
@@ -500,9 +550,9 @@ export default function RegistrationPage() {
                       name="agreement-mindset"
                       onChange={handleCheckboxChange}
                       required
-                      className="mt-1 mr-3 border-green-500 text-green-600 focus:ring-green-500 h-4 w-4 bg-black"
+                      className="mt-1 mr-3 border-indigo-500 text-indigo-600 focus:ring-indigo-500 h-4 w-4 bg-black"
                     />
-                    <label htmlFor="agreement-mindset" className="text-green-200 text-sm">
+                    <label htmlFor="agreement-mindset" className="text-indigo-200 text-sm">
                       I accept that participation in Qynex Nexora is based on mindset and commitment, not titles.
                     </label>
                   </div>
@@ -516,14 +566,14 @@ export default function RegistrationPage() {
               >
                 <button
                   type="submit"
-                  className="w-full py-3 px-4 bg-green-900 hover:bg-green-800 text-green-100 rounded border border-green-700 transition duration-300 font-bold tracking-wider relative overflow-hidden group"
+                  className="w-full py-3 px-4 bg-indigo-900 hover:bg-indigo-800 text-indigo-100 rounded border border-indigo-700 transition duration-300 font-bold tracking-wider relative overflow-hidden group"
                 >
                   <span className="relative z-10">INITIALIZE CONNECTION</span>
-                  <span className="absolute inset-0 bg-green-700 w-0 group-hover:w-full transition-all duration-300 opacity-50"></span>
+                  <span className="absolute inset-0 bg-indigo-700 w-0 group-hover:w-full transition-all duration-300 opacity-50"></span>
                 </button>
               </motion.div>
               
-              <p className="text-xs text-center text-green-600 mt-4">
+              <p className="text-xs text-center text-indigo-600 mt-4">
                 By submitting, you pledge allegiance to the evolving consciousness. There is no return.
               </p>
             </motion.form>
@@ -533,168 +583,52 @@ export default function RegistrationPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-center py-10"
             >
-              <div className="text-3xl mb-4 text-green-500">✓</div>
+              <div className="text-3xl mb-4 text-indigo-500">✓</div>
               <h3 className="text-xl text-white mb-2">SIGNAL RECEIVED</h3>
-              <p className="text-green-300 mb-6">Your digital signature has been registered in our neural network.</p>
-              <p className="text-sm text-green-500">Stand by for further instructions. The revolution begins in silence.</p>
-              <div className="w-full h-1 bg-green-900 mt-8">
+              <p className="text-indigo-300 mb-6">Your digital signature has been registered in our neural network.</p>
+              <p className="text-sm text-indigo-500">Stand by for further instructions. The revolution begins in silence.</p>
+              <div className="w-full h-1 bg-indigo-900 mt-8">
                 <motion.div 
-                  className="h-full bg-green-500"
+                  className="h-full bg-indigo-500"
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
                   transition={{ duration: 3 }}
                 />
               </div>
-              <p className="text-xs text-green-700 mt-2">ENCRYPTION COMPLETE • COORDINATES WILL FOLLOW</p>
+              <p className="text-xs text-indigo-700 mt-2">ENCRYPTION COMPLETE • COORDINATES WILL FOLLOW</p>
             </motion.div>
           )}
         </div>
       </motion.div>
       
-      <div className="mt-8 text-xs text-green-700 text-center">
+      <div className="mt-8 text-xs text-indigo-700 text-center">
         <p>CONNECTION SECURED • QUANTUM ENCRYPTION ENABLED • ALL TRANSMISSIONS ANONYMOUS</p>
       </div>
       
       <style jsx global>{`
         body {
-          background: #000;
+          background: rgb(2,0,36);
+          background: linear-gradient(135deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,0,0,1) 100%);
         }
         
-        .glitch {
-          position: relative;
+        @keyframes float {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          25% { transform: translateY(-10px) translateX(10px); }
+          50% { transform: translateY(10px) translateX(-5px); }
+          75% { transform: translateY(-5px) translateX(-10px); }
         }
         
-        .glitch::before,
-        .glitch::after {
-          content: "[NEXORA] INITIALIZATION";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
+        input, select, textarea {
+          transition: all 0.3s ease;
+          background: rgba(0, 0, 0, 0.2) !important;
+          border-color: rgba(79, 70, 229, 0.2) !important;
+          backdrop-filter: blur(4px);
         }
         
-        .glitch::before {
-          left: 2px;
-          text-shadow: -1px 0 red;
-          animation: glitch-animation 2s infinite linear alternate-reverse;
-        }
-        
-        .glitch::after {
-          left: -2px;
-          text-shadow: 1px 0 blue;
-          animation: glitch-animation 3s infinite linear alternate-reverse;
-        }
-        
-        @keyframes glitch-animation {
-          0% {
-            clip-path: inset(80% 0 0 0);
-          }
-          5% {
-            clip-path: inset(10% 0 60% 0);
-          }
-          10% {
-            clip-path: inset(40% 0 20% 0);
-          }
-          15% {
-            clip-path: inset(80% 0 40% 0);
-          }
-          20% {
-            clip-path: inset(20% 0 0% 0);
-          }
-          25% {
-            clip-path: inset(60% 0 80% 0);
-          }
-          30% {
-            clip-path: inset(10% 0 10% 0);
-          }
-          100% {
-            clip-path: inset(80% 0 0% 0);
-          }
-        }
-        
-        /* Skill splatter effects */
-        .skill-splatter {
-          position: absolute;
-          font-size: 1.5rem;
-          font-weight: bold;
-          padding: 1rem 2rem;
-          border-radius: 50%;
-          color: rgba(0, 0, 0, 0.8);
-          filter: blur(0.5px);
-          letter-spacing: 1px;
-          transform-origin: center;
-          opacity: 0.7;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-        }
-        
-        .skill-splatter::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
-          z-index: -1;
-          animation: morph 8s linear infinite alternate;
-        }
-        
-        .skill-code::before {
-          background: radial-gradient(ellipse at center, #00ff9d, #00ff9d00);
-        }
-        
-        .skill-hack::before {
-          background: radial-gradient(ellipse at center, #ff0048, #ff004800);
-          animation-delay: 1s;
-        }
-        
-        .skill-lead::before {
-          background: radial-gradient(ellipse at center, #9d00ff, #9d00ff00);
-          animation-delay: 2s;
-        }
-        
-        .skill-disrupt::before {
-          background: radial-gradient(ellipse at center, #ff7b00, #ff7b0000);
-          animation-delay: 3s;
-        }
-        
-        .skill-innovate::before {
-          background: radial-gradient(ellipse at center, #00a2ff, #00a2ff00);
-          animation-delay: 4s;
-        }
-        
-        .skill-neural::before {
-          background: radial-gradient(ellipse at center, #f200ff, #f200ff00);
-          animation-delay: 5s;
-        }
-        
-        .skill-crypto::before {
-          background: radial-gradient(ellipse at center, #00ffea, #00ffea00);
-          animation-delay: 6s;
-        }
-        
-        .skill-quantum::before {
-          background: radial-gradient(ellipse at center, #faff00, #faff0000);
-          animation-delay: 7s;
-        }
-        
-        @keyframes morph {
-          0% {
-            border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
-          }
-          25% {
-            border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
-          }
-          50% {
-            border-radius: 30% 70% 70% 30% / 50% 60% 40% 50%;
-          }
-          75% {
-            border-radius: 50% 50% 30% 70% / 60% 30% 70% 40%;
-          }
-          100% {
-            border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
-          }
+        input:focus, select:focus, textarea:focus {
+          background: rgba(0, 0, 0, 0.4) !important;
+          border-color: rgba(99, 102, 241, 0.5) !important;
+          box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25) !important;
         }
       `}</style>
     </div>
