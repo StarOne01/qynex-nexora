@@ -432,7 +432,7 @@ export default function RegistrationPage() {
                   <div>
                     <label className="flex items-center text-xs text-indigo-300 mb-1">
                       <FaNetworkWired className="mr-2" />
-                      WHAT DOES 'COMMUNITY' MEAN TO YOU?
+                      WHAT DOES &apos;COMMUNITY&apos; MEAN TO YOU?
                     </label>
                     <textarea
                       name="communityConcept"
