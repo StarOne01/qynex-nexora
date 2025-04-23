@@ -1,206 +1,69 @@
 "use client";
 
-import Image from "next/image";
-import { Do_Hyeon, Bungee_Hairline } from "next/font/google";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { useEffect, useState } from "react";
-import managers, { mentors, team, coOrds } from "../data/db";
-import type { dbSchema } from "../data/db";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const hyeon = Do_Hyeon({ subsets: ["latin"], weight: "400" });
-const bungee = Bungee_Hairline({ subsets: ["latin"], weight: "400" });
+export default function InitPage() {
+  const router = useRouter();
+  const [loaded, setLoaded] = useState(false);
 
-export default function Home() {
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
-  const [currentSection, setCurrentSection] = useState("Intro");
-
-  const handleScroll = () => {
-    const sections = document.querySelectorAll('section');
-    let foundSection = currentSection;
-
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-        foundSection = section.id.charAt(0).toUpperCase() + section.id.slice(1);;
-      }
-    });
-
-    if (foundSection !== currentSection) {
-      setCurrentSection(foundSection);
-    }
-
+  const handleExplore = () => {
+    router.push("/about");
   };
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [currentSection]);
-
-function cards(data: dbSchema) {
   return (
-    <div
-      key={data.name}
-      className={
-        "grid grid-cols-1 justify-items-center min-h-svh p-8 pb-20 sm:p-20 snap-start " +
-        hyeon.className
-      }
-    >
-      <div className="flex mt-8 flex-col max-w-[600px] gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="rounded-lg z-[-1]"
-          src={data.image}
-          alt="StarOne01"
-          data-aos="fade-in"
-          width={180}
-          height={38}
-          priority
-        />
-        <div className="text-4xl text-center sm:text-left">{data.name}</div>
+    <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex flex-col items-center justify-center p-6">
+      <div className={`max-w-4xl transition-all duration-1000 ${loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="text-center mb-12">
+          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 mb-6">
+            Qynex Nexora
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 mb-8">
+            A tech community for developers, designers, and creators
+          </p>
+        </div>
 
-        <ul className="flex gap-2 text-sm font-black flex-row flex-wrap justify-center sm:justify-start">
-          {data.roles.map((role) => (
-            <li
-              key={role + data.name}
-              data-aos="fade-in"
-              className="border-2 border-[#9b9b9b] px-3 py-2 rounded-lg"
-            >
-              {role}
-            </li>
-          ))}
-        </ul>
-        <p
-          data-aos="fade-in"
-          className="list-inside list-disc  text-sm sm:text-left text-center font-[family-name:var(--font-geist-mono)]"
-        >
-          {data.description}
-        </p>
-        <div className="flex gap-4 items-center flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href={data.links[0][1]}
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl hover:bg-gray-800/80 transition">
+            <h2 className="text-xl font-bold mb-3 text-blue-400">Connect</h2>
+            <p className="text-gray-300">Join a thriving community of tech enthusiasts and expand your network.</p>
+          </div>
+          
+          <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl hover:bg-gray-800/80 transition">
+            <h2 className="text-xl font-bold mb-3 text-purple-400">Learn</h2>
+            <p className="text-gray-300">Access resources, mentorship, and collaborative learning opportunities.</p>
+          </div>
+          
+          <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl hover:bg-gray-800/80 transition">
+            <h2 className="text-xl font-bold mb-3 text-teal-400">Create</h2>
+            <p className="text-gray-300">Collaborate on projects and turn your innovative ideas into reality.</p>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-4 justify-center">
+          <button 
+            onClick={handleExplore}
+            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-bold hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-blue-500/25"
           >
-            {data.links[0][0]}
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href={data.links[1][1]}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {data.links[1][0]}
-          </a>
+            Explore Community
+          </button>
+          
+          <Link href="https://forms.gle/GnBfHefs5kmLZceR6" target="_blank">
+            <button className="px-8 py-3 bg-gray-800 rounded-full font-bold hover:bg-gray-700 transition-all border border-gray-700">
+              Join Us
+            </button>
+          </Link>
         </div>
       </div>
-    </div>
-  );
-}
-
-function Cards({ props, role }: { props: dbSchema[]; role: string }) {
- return (
-    <section
-    id={role}
-      className="grid grid-cols-1 section gap-8 sm:gap-16"
-    >
-      {props.map((db: dbSchema) => cards(db))}
-    </section>
-  );
-}
-function Hero() {
-  return (
-    <section id="hello"
-      className={
-        "bg-cover bg-fixed bg-[url(https://wallpapershome.com/images/pages/pic_h/26430.jpg)] z-50 text-white text-center snap-start  " +
-        bungee.className
-      }
-    >
-      <div className="dark:bg-[#0000002f] bg-[#ffffff10] items-center z-50 min-h-svh flex justify-center backdrop-blur-sm min-w-full ">
-        <h1
-          className={" text-white max-h-28 " + bungee.className}
-          data-aos="fade-in"
-        >
-          <span className="text-8xl md:text-[160px] md:relative md:bottom-10">Qynex</span> <br />
-          <span className="text-5xl md:text-[80px] md:relative md:bottom-10">Nexora</span>
-        </h1>
-      </div>
-    </section>
-  );
-}
-
-function Intro() {
-  return (
-    <section id="intro"
-      className={
-        "max-w-[800px] flex flex-col justify-evenly min-h-svh mx-auto p-8 sm:p-20 snap-start " +
-        hyeon.className
-      }
-    >
-      <div className="dark:bg-[#0000002f] text-center bg-[#ffffff10]  items-center flex justify-center min-w-full ">
-        <h1 className={" dark:text-white text-black " + bungee.className}>
-          <span className="text-8xl">Qynex</span> <br />
-          <span className="text-5xl">Nexora</span>
-        </h1>
-      </div>
-      <p className="text-md text-center mt-4 font-[family-name:var(--font-geist-mono)]">
-        We are a team of passionate developers, designers, and creators who love
-        to build and design things. We are always looking for new opportunities
-        to learn and grow as developers and designers. We love to work on
-        projects that involve both design and development. We have experience in
-        web development, mobile app development, and game development. We are
-        always looking for new opportunities to learn and grow as developers and
-        designers.
-      </p>
-    </section>
-  );
-}
-
-function Tag() {
-  return (
-      <div
-        className={
-          "border-2 border-[#9b9b9b] bg-white dark:bg-black fixed px-3 py-2 rounded-lg font-black  bottom-4 right-5 border-solid transition-colors flex items-center justify-center gap-2 md:text-sm lg:text-lg text-xs " +
-          hyeon.className
-        }
-      >
-      {currentSection}
-      </div>
-  );
-}
-
-function Nav() {
-  return (
-    <nav className="flex fixed justify-around -z-20 backdrop-blur-sm min-w-full items-center p-4">
-      <div  className={"text-xl dark:text-white text-black font-bold sm:text-3xl  " + hyeon.className}>
-        Qynex Nexora
-      </div>
-      <div className="flex gap-4 text-[13px] sm:text-base font-[family-name:var(--font-geist-mono)]">
-        <a href="https://forms.gle/GnBfHefs5kmLZceR6">Join us!</a>
-      </div>
-    </nav>
-  );
-}
-
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: false,
-    });
-  }, []);
-  return (
-    <>
-      <Nav />
-      <Hero />
-      <Intro />
-      <Cards props={mentors} role="mentors" />
-      <Cards props={managers} role="managers" />
-      <Cards props={coOrds} role="co-ords" />
-      <Cards props={team} role="team" />
-      <Tag />
-    </>
+      
+      <footer className={`absolute bottom-4 text-sm text-gray-500 transition-all duration-1000 delay-500 ${loaded ? "opacity-100" : "opacity-0"}`}>
+        © {new Date().getFullYear()} Qynex Nexora • A community for tech enthusiasts
+      </footer>
+    </main>
   );
 }
