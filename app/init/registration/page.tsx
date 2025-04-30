@@ -3,9 +3,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLock, FaCode, FaLightbulb, FaNetworkWired, FaBrain, FaKey } from 'react-icons/fa';
+import { submitRegistration, type RegistrationFormData } from '@/lib/registration-service';
 
 export default function RegistrationPage() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<RegistrationFormData>({
     fullName: '',
     registrationNumber: '',
     departmentYear: '',
@@ -29,7 +30,9 @@ export default function RegistrationPage() {
     }
   });
   
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [codeLines, setCodeLines] = useState<string[]>([]);
   const [terminalText, setTerminalText] = useState("");
   const [currentCodeIndex, setCurrentCodeIndex] = useState(0);
@@ -104,12 +107,20 @@ export default function RegistrationPage() {
     }
   }, []);
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    setTimeout(() => {
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      await submitRegistration(formData);
       setIsSubmitted(true);
-    }, 1500);
+    } catch (error: any) {
+      console.error('Error submitting form:', error);
+      setSubmitError(error.message || 'Failed to submit form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   return (
@@ -566,12 +577,21 @@ export default function RegistrationPage() {
               >
                 <button
                   type="submit"
-                  className="w-full py-3 px-4 bg-indigo-900 hover:bg-indigo-800 text-indigo-100 rounded border border-indigo-700 transition duration-300 font-bold tracking-wider relative overflow-hidden group"
+                  disabled={isSubmitting}
+                  className={`w-full py-3 px-4 bg-indigo-900 hover:bg-indigo-800 text-indigo-100 rounded border border-indigo-700 transition duration-300 font-bold tracking-wider relative overflow-hidden group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
-                  <span className="relative z-10">INITIALIZE CONNECTION</span>
+                  <span className="relative z-10">
+                    {isSubmitting ? 'PROCESSING...' : 'INITIALIZE CONNECTION'}
+                  </span>
                   <span className="absolute inset-0 bg-indigo-700 w-0 group-hover:w-full transition-all duration-300 opacity-50"></span>
                 </button>
               </motion.div>
+              
+              {submitError && (
+                <p className="text-red-400 text-sm text-center mt-2">
+                  {submitError}
+                </p>
+              )}
               
               <p className="text-xs text-center text-indigo-600 mt-4">
                 By submitting, you pledge allegiance to the evolving consciousness. There is no return.
