@@ -115,9 +115,14 @@ export default function RegistrationPage() {
     try {
       await submitRegistration(formData);
       setIsSubmitted(true);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error submitting form:', error);
-      setSubmitError(error.message || 'Failed to submit form. Please try again.');
+      // Type guard to safely access error properties
+      if (error instanceof Error) {
+        setSubmitError(error.message);
+      } else {
+        setSubmitError('Failed to submit form. Please try again.');
+      }
     } finally {
       setIsSubmitting(false);
     }

@@ -63,7 +63,7 @@ export async function submitRegistration(formData: RegistrationFormData) {
 
     console.log('Submission successful:', data);
     return data;
-  } catch (error: any) {
+  } catch (error) {
     console.error('Registration submission error:', error);
     throw error;
   }
