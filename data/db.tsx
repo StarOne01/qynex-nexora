@@ -219,7 +219,7 @@ const team: dbSchema[] = [
   {
     name: "Saran",
     image: Saran,
-    roles: ["Friendly-Neighbourhood", "Kotlin Developer"],
+    roles: ["Mod"],
     description:
       "A creative soul with a passion for bringing unique ideas to life. Known for patience and adaptability, I thrive in any situation. Proficient in cryptocurrencies and Android app development, I enjoy working with diverse teams to turn ideas into impactful solutions. Let’s collaborate and make a difference!",
     links: [
