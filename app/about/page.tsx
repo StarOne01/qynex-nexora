@@ -51,7 +51,7 @@ function cards(data: dbSchema) {
     >
       <div className="flex mt-8 flex-col max-w-[600px] gap-8 row-start-2 items-center sm:items-start">
         <Image
-          className="rounded-lg z-[-1]"
+          className="rounded-xl z-[-1]"
           src={data.image}
           alt="StarOne01"
           data-aos="fade-in"
