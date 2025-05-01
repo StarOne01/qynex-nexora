@@ -95,17 +95,6 @@ const mentors: dbSchema[] = [
       ["Github", "https://github.com/rajaguru2004"],
     ],
   },
-  {
-    name: "Saran",
-    image: Saran,
-    roles: ["Friendly-Neighbourhood", "Kotlin Developer"],
-    description:
-      "A creative soul with a passion for bringing unique ideas to life. Known for patience and adaptability, I thrive in any situation. Proficient in cryptocurrencies and Android app development, I enjoy working with diverse teams to turn ideas into impactful solutions. Let’s collaborate and make a difference!",
-    links: [
-      ["Portfolio", "https://saran.vercel.app/"],
-      ["LinkedIn", "https://www.linkedin.com/in/saranraj-p/"],
-    ],
-  },
 ];
 
 const managers: dbSchema[] = [
@@ -225,6 +214,17 @@ const team: dbSchema[] = [
       ["LinkedIn", "https://www.linkedin.com/in/sinegaselvakumar"],
       ["Github", "https://github.com/Sinex23/Sinex23"],
       //
+    ],
+  },
+  {
+    name: "Saran",
+    image: Saran,
+    roles: ["Friendly-Neighbourhood", "Kotlin Developer"],
+    description:
+      "A creative soul with a passion for bringing unique ideas to life. Known for patience and adaptability, I thrive in any situation. Proficient in cryptocurrencies and Android app development, I enjoy working with diverse teams to turn ideas into impactful solutions. Let’s collaborate and make a difference!",
+    links: [
+      ["Portfolio", "https://saran.vercel.app/"],
+      ["LinkedIn", "https://www.linkedin.com/in/saranraj-p/"],
     ],
   },
   {

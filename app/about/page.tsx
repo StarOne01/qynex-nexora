@@ -178,8 +178,8 @@ function Nav() {
       <div  className={"text-xl dark:text-white text-black font-bold sm:text-3xl  " + hyeon.className}>
         Qynex Nexora
       </div>
-      <div className="flex gap-4 text-[13px] sm:text-base font-[family-name:var(--font-geist-mono)]">
-        <a href="https://forms.gle/GnBfHefs5kmLZceR6">Join us!</a>
+      <div className="flex gap-4 z-[100] text-[13px] sm:text-base font-[family-name:var(--font-geist-mono)]">
+        <a href="/init/registration">Join us!</a>
       </div>
     </nav>
   );

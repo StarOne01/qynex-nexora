@@ -53,7 +53,7 @@ export default function InitPage() {
             Explore Community
           </button>
           
-          <Link href="https://forms.gle/GnBfHefs5kmLZceR6" target="_blank">
+          <Link href="/init/registration" target="_blank">
             <button className="px-8 py-3 bg-gray-800 rounded-full font-bold hover:bg-gray-700 transition-all border border-gray-700">
               Join Us
             </button>
