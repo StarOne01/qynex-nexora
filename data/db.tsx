@@ -12,7 +12,7 @@ import PriyaDharshini from "../public/PriyaDharshini.jpeg";
 import Kunguma from "../public/Kunguma.jpeg";
 import Sujay from "../public/Sujay.jpeg";
 import Abhi from "../public/Abhi.jpeg";
-import Me from "../public/Me.jpeg";
+import Me from "../public/Me.jpg";
 import Aderine from "../public/Aderine.jpg";
 import Sunil from "../public/Sunil.jpeg";
 import Poorani from "../public/poorani.png";
