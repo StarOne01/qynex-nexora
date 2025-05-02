@@ -543,7 +543,7 @@ export default function RegistrationPage() {
             
             <div className="mt-6">
               <p className="text-sm text-indigo-300 mb-4">
-                You've reached the final step. Once submitted, your application will be encrypted and transmitted to the Qynex Nexora neural network for processing.
+                You&apos;ve reached the final step. Once submitted, your application will be encrypted and transmitted to the Qynex Nexora neural network for processing.
               </p>
             </div>
           </div>
