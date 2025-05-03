@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaLock, FaCode, FaLightbulb, FaNetworkWired, FaBrain, FaKey, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { FaLock, FaCode, FaLightbulb, FaNetworkWired, FaBrain, FaKey, FaArrowRight, FaArrowLeft, FaLinkedin, FaFileUpload } from 'react-icons/fa';
 import { submitRegistration, type RegistrationFormData } from '@/lib/registration-service';
 
 export default function RegistrationPage() {
@@ -14,6 +14,7 @@ export default function RegistrationPage() {
     email: '',
     personalProfile: '',
     threeWords: '',
+    resume: null, // Changed from empty string to null to match File | null type
     passions: '',
     unlimitedProject: '',
     planFailReaction: '',
@@ -22,6 +23,13 @@ export default function RegistrationPage() {
     communityConcept: '',
     collegeChange: '',
     timeCommitment: '',
+    // New mindset fields
+    joinReason: '',
+    fieldExperience: '',
+    futurePlans: '',
+    initiativeStory: '',
+    eventIdea: '',
+    additionalInfo: '',
     roles: [] as string[],
     agreements: {
       respect: false,
@@ -32,7 +40,7 @@ export default function RegistrationPage() {
   
   // Add state for tracking current step
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 5;
+  const totalSteps = 6;
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -41,6 +49,9 @@ export default function RegistrationPage() {
   const [terminalText, setTerminalText] = useState("");
   const [currentCodeIndex, setCurrentCodeIndex] = useState(0);
   const terminalFullText = "> Initializing connection sequence...\n> Scanning neural patterns...\n> Protocol awaiting verification...";
+  
+  // Add state to track the name of the uploaded file
+  const [resumeFileName, setResumeFileName] = useState<string>("");
   
   useEffect(() => {
     // More modern code snippets
@@ -85,6 +96,18 @@ export default function RegistrationPage() {
       ...prev,
       [name]: value,
     }));
+  }, []);
+  
+  // Add a specific handler for file inputs
+  const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setResumeFileName(file.name);
+      setFormData(prev => ({
+        ...prev,
+        resume: file
+      }));
+    }
   }, []);
   
   const handleCheckboxChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -147,15 +170,19 @@ export default function RegistrationPage() {
     switch (currentStep) {
       case 1: // Basic Information
         return formData.fullName && formData.registrationNumber && 
-               formData.departmentYear && formData.phoneNumber && formData.email;
+               formData.departmentYear && formData.phoneNumber && formData.email && 
+               formData.personalProfile && formData.resume !== null; // Updated to include LinkedIn and resume
       case 2: // Understanding You
         return formData.threeWords && formData.passions && formData.unlimitedProject;
       case 3: // Mindset Test
         return formData.planFailReaction && formData.groupRole && 
                formData.motto && formData.communityConcept && formData.collegeChange;
-      case 4: // Availability & Contribution
+      case 4: // Personal Journey (new step)
+        return formData.joinReason && formData.fieldExperience && 
+               formData.futurePlans && formData.initiativeStory && formData.eventIdea;
+      case 5: // Availability & Contribution (now step 5)
         return formData.timeCommitment && formData.roles.length > 0;
-      case 5: // Agreement
+      case 6: // Agreement (now step 6)
         return formData.agreements.respect && formData.agreements.mindset;
       default:
         return true;
@@ -256,17 +283,44 @@ export default function RegistrationPage() {
               
               <div>
                 <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaBrain className="mr-2" />
-                  PERSONAL PROFILE (OPTIONAL)
+                  <FaLinkedin className="mr-2" />
+                  LINKEDIN PROFILE
                 </label>
                 <input
-                  type="text"
-                  name="personalProfile"
+                  type="url"
+                  name="personalProfile"  // Changed from linkedInProfile to match the state field name
                   value={formData.personalProfile}
                   onChange={handleChange}
+                  required
                   className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                  placeholder="Your digital footprint (LinkedIn, GitHub)"
+                  placeholder="https://linkedin.com/in/yourprofile"
                 />
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="flex items-center text-xs text-indigo-300 mb-1">
+                  <FaFileUpload className="mr-2" />
+                  RESUME UPLOAD
+                </label>
+                <div className="flex items-center">
+                  <label className="w-full flex items-center justify-center bg-black/40 border border-dashed border-indigo-500 rounded p-3 text-indigo-300 cursor-pointer hover:bg-black/60 transition-all">
+                    <input
+                      type="file"
+                      name="resume"
+                      onChange={handleFileChange}
+                      required
+                      accept=".pdf,.doc,.docx"
+                      className="hidden"
+                    />
+                    <FaFileUpload className="mr-2" />
+                    {resumeFileName || "Upload your resume (PDF, DOC, DOCX)"}
+                  </label>
+                </div>
+                {resumeFileName && (
+                  <p className="mt-2 text-xs text-indigo-400">
+                    Selected: {resumeFileName}
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -434,11 +488,116 @@ export default function RegistrationPage() {
           </div>
         );
         
-      case 4:
+      case 4: // New step for deeper mindset questions
         return (
           <div className="space-y-6">
             <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
               <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">4</span>
+              Your Journey
+            </h2>
+            
+            <div>
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaLightbulb className="mr-2" />
+                WHY DO YOU WANT TO JOIN QYNEX NEXORA?
+              </label>
+              <textarea
+                name="joinReason"
+                value={formData.joinReason}
+                onChange={handleChange}
+                required
+                rows={2}
+                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                placeholder="Share your motivations and what you hope to gain from this community"
+              />
+            </div>
+            
+            <div>
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaNetworkWired className="mr-2" />
+                TELL US ABOUT YOUR FIELD OF INTEREST
+              </label>
+              <textarea
+                name="fieldExperience"
+                value={formData.fieldExperience}
+                onChange={handleChange}
+                required
+                rows={3}
+                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                placeholder="What technology/field are you passionate about? What experience have you gained so far?"
+              />
+            </div>
+            
+            <div>
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaBrain className="mr-2" />
+                YOUR FUTURE ROADMAP
+              </label>
+              <textarea
+                name="futurePlans"
+                value={formData.futurePlans}
+                onChange={handleChange}
+                required
+                rows={3}
+                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                placeholder="What are your plans for the upcoming years and what steps are you taking to achieve them?"
+              />
+            </div>
+            
+            <div>
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaCode className="mr-2" />
+                SHARE A LEADERSHIP EXPERIENCE
+              </label>
+              <textarea
+                name="initiativeStory"
+                value={formData.initiativeStory}
+                onChange={handleChange}
+                required
+                rows={3}
+                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                placeholder="Describe a time when you took initiative to solve a problem or lead a project. What challenges did you face and what was the outcome?"
+              />
+            </div>
+            
+            <div>
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaLightbulb className="mr-2" />
+                YOUR PITCH FOR QYNEX NEXORA
+              </label>
+              <textarea
+                name="eventIdea"
+                value={formData.eventIdea}
+                onChange={handleChange}
+                required
+                rows={3}
+                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                placeholder="Pitch an innovative event or initiative you think our community should organize this year"
+              />
+            </div>
+            
+            <div>
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaNetworkWired className="mr-2" />
+                ANYTHING ELSE?
+              </label>
+              <textarea
+                name="additionalInfo"
+                value={formData.additionalInfo}
+                onChange={handleChange}
+                rows={2}
+                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                placeholder="Is there anything else you'd like us to know about you? (Optional)"
+              />
+            </div>
+          </div>
+        );
+        
+      case 5: // Previous case 4 (Availability)
+        return (
+          <div className="space-y-6">
+            <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
+              <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">5</span>
               Availability & Contribution
             </h2>
             
@@ -501,11 +660,11 @@ export default function RegistrationPage() {
           </div>
         );
         
-      case 5:
+      case 6: // Previous case 5 (Agreement)
         return (
           <div className="space-y-6">
             <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
-              <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">5</span>
+              <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">6</span>
               Agreement
             </h2>
             
@@ -642,7 +801,7 @@ export default function RegistrationPage() {
               {/* Step indicator */}
               <div className="mb-4 flex justify-between items-center text-xs text-indigo-400">
                 <span>Step {currentStep} of {totalSteps}</span>
-                <span>{["Identity", "Mindscape", "Neural Patterns", "Contribution", "Protocol"][currentStep-1]}</span>
+                <span>{["Identity", "Mindscape", "Neural Patterns", "Your Journey", "Contribution", "Protocol"][currentStep-1]}</span>
               </div>
               
               <ProgressBar />

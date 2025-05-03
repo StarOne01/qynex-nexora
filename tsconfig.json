@@ -6,6 +6,8 @@
     "skipLibCheck": true,
     "strict": true, // Turning off strict mode
     "noImplicitAny": false, // Allow implicit any
+    "noUnusedLocals": false,    // Disable unused variable checks
+    "noUnusedParameters": false, // Disable unused parameter checks
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
