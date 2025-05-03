@@ -46,7 +46,7 @@ export async function submitRegistration(formData: RegistrationFormData) {
       const filePath = `public/${formData.registrationNumber.replace(/\s+/g, '_')}/${fileName}`;
       
       // Upload to Supabase storage - works for unauthenticated users with proper bucket policy
-      const { data: fileData, error: fileError } = await supabase.storage
+      const { error: fileError } = await supabase.storage
         .from('resumes')
         .upload(filePath, formData.resume, {
           cacheControl: '3600',
