@@ -14,7 +14,7 @@ export default function RegistrationPage() {
     email: '',
     personalProfile: '',
     threeWords: '',
-    resume: null, // Changed from empty string to null to match File | null type
+    resume: null,
     passions: '',
     unlimitedProject: '',
     planFailReaction: '',
@@ -23,7 +23,6 @@ export default function RegistrationPage() {
     communityConcept: '',
     collegeChange: '',
     timeCommitment: '',
-    // New mindset fields
     joinReason: '',
     fieldExperience: '',
     futurePlans: '',
@@ -45,29 +44,12 @@ export default function RegistrationPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState('');
-  const [codeLines, setCodeLines] = useState<string[]>([]);
   const [terminalText, setTerminalText] = useState("");
-  const [currentCodeIndex, setCurrentCodeIndex] = useState(0);
-  const terminalFullText = "> Initializing connection sequence...\n> Scanning neural patterns...\n> Protocol awaiting verification...";
-  
-  // Add state to track the name of the uploaded file
   const [resumeFileName, setResumeFileName] = useState<string>("");
+  const terminalFullText = "> Initializing connection sequence...\n> SYN - ACK...\n> Protocol awaiting verification...";
   
+  // Add the terminal text typing effect
   useEffect(() => {
-    // More modern code snippets
-    const snippets = [
-      'async function syncMindscape() { await consciousness.expand(); }',
-      'const reality = new Dimension({ perception: "moldable" });',
-      'for(let i of infinity) { if(i.isLimitless()) break; }',
-      'class Perception extends Reality implements Infinite {}',
-      'const [potential, setPotential] = useState(undefined);',
-      'navigator.reality.requestAccess({ credentials: "mind" });',
-      'const future = await Promise.all(dreams.map(d => d.manifest()));',
-      'try { comfort.transcend() } catch { evolution.accelerate() }',
-    ];
-    
-    setCodeLines(snippets);
-    
     // Enhanced typing effect with cursor blink
     let i = 0;
     const typeInterval = setInterval(() => {
@@ -79,14 +61,8 @@ export default function RegistrationPage() {
       }
     }, 40);
     
-    // Cycle through code snippets for background effect
-    const codeRotation = setInterval(() => {
-      setCurrentCodeIndex(prev => (prev + 1) % snippets.length);
-    }, 3000);
-    
     return () => {
       clearInterval(typeInterval);
-      clearInterval(codeRotation);
     };
   }, []);
   
@@ -171,7 +147,7 @@ export default function RegistrationPage() {
       case 1: // Basic Information
         return formData.fullName && formData.registrationNumber && 
                formData.departmentYear && formData.phoneNumber && formData.email && 
-               formData.personalProfile && formData.resume !== null; // Updated to include LinkedIn and resume
+               formData.personalProfile && formData.resume !== null;
       case 2: // Understanding You
         return formData.threeWords && formData.passions && formData.unlimitedProject;
       case 3: // Mindset Test
@@ -288,7 +264,7 @@ export default function RegistrationPage() {
                 </label>
                 <input
                   type="url"
-                  name="personalProfile"  // Changed from linkedInProfile to match the state field name
+                  name="personalProfile"
                   value={formData.personalProfile}
                   onChange={handleChange}
                   required
@@ -488,7 +464,7 @@ export default function RegistrationPage() {
           </div>
         );
         
-      case 4: // New step for deeper mindset questions
+      case 4:
         return (
           <div className="space-y-6">
             <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
@@ -593,7 +569,7 @@ export default function RegistrationPage() {
           </div>
         );
         
-      case 5: // Previous case 4 (Availability)
+      case 5:
         return (
           <div className="space-y-6">
             <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
@@ -660,7 +636,7 @@ export default function RegistrationPage() {
           </div>
         );
         
-      case 6: // Previous case 5 (Agreement)
+      case 6:
         return (
           <div className="space-y-6">
             <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
@@ -724,49 +700,14 @@ export default function RegistrationPage() {
   );
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black to-slate-900 text-slate-200 flex flex-col items-center justify-center relative overflow-hidden font-sans">
-      {/* Ambient background effects */}
-      <div className="absolute inset-0 overflow-hidden opacity-50">
-        {[...Array(5)].map((_, i) => (
-          <div 
-            key={i}
-            className="absolute blur-3xl rounded-full mix-blend-screen opacity-20"
-            style={{
-              width: `${Math.random() * 40 + 10}vw`,
-              height: `${Math.random() * 40 + 10}vh`,
-              background: `radial-gradient(circle, ${['#4F46E5', '#0EA5E9', '#2563EB', '#7C3AED', '#8B5CF6'][i % 5]}, transparent)`,
-              top: `${Math.random() * 100}vh`,
-              left: `${Math.random() * 100}vw`,
-              animation: `float ${Math.random() * 20 + 40}s infinite ease-in-out`,
-              animationDelay: `${Math.random() * 10}s`
-            }}
-          />
-        ))}
-      </div>
-      
-      {/* Animated code in background */}
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden text-[rgba(255,255,255,0.03)] font-mono z-0">
-        <AnimatePresence mode="wait">
-          <motion.div 
-            key={currentCodeIndex}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5 }}
-            className="absolute inset-0 flex items-center justify-center text-4xl whitespace-pre"
-          >
-            {codeLines[currentCodeIndex]}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black to-slate-900 text-slate-200 flex flex-col items-center justify-center relative font-sans">
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
         className="z-10 w-full max-w-2xl px-4 py-8"
       >
-        <div className="rounded-xl p-6 sm:p-8 backdrop-blur-xl backdrop-filter bg-black/30 shadow-[0_8px_32px_rgba(0,0,0,0.2)] border border-white/10">
+        <div className="rounded-xl p-6 sm:p-8 bg-black/30 shadow-[0_8px_32px_rgba(0,0,0,0.2)] border border-white/10">
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -780,6 +721,7 @@ export default function RegistrationPage() {
             </p>
           </motion.div>
           
+          {/* Add back the terminal text component */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -867,8 +809,8 @@ export default function RegistrationPage() {
             >
               <div className="text-3xl mb-4 text-indigo-500">✓</div>
               <h3 className="text-xl text-white mb-2">SIGNAL RECEIVED</h3>
-              <p className="text-indigo-300 mb-6">Your digital signature has been registered in our neural network.</p>
-              <p className="text-sm text-indigo-500">Stand by for further instructions. The revolution begins in silence.</p>
+              <p className="text-indigo-300 mb-6">Your application has been registered.</p>
+              <p className="text-sm text-indigo-500">Stand by for further instructions.</p>
               <div className="w-full h-1 bg-indigo-900 mt-8">
                 <motion.div 
                   className="h-full bg-indigo-500"
@@ -883,8 +825,8 @@ export default function RegistrationPage() {
         </div>
       </motion.div>
       
-      <div className="mt-8 text-xs text-indigo-700 text-center">
-        <p>CONNECTION SECURED • QUANTUM ENCRYPTION ENABLED • ALL TRANSMISSIONS ANONYMOUS</p>
+      <div className="m-8 text-xs text-indigo-700 text-center">
+        <p>CONNECTION SECURED • RSA ENCRYPTION ENABLED • ALL TRANSMISSIONS ANONYMOUS</p>
       </div>
       
       <style jsx global>{`
@@ -893,18 +835,10 @@ export default function RegistrationPage() {
           background: linear-gradient(135deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,0,0,1) 100%);
         }
         
-        @keyframes float {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          25% { transform: translateY(-10px) translateX(10px); }
-          50% { transform: translateY(10px) translateX(-5px); }
-          75% { transform: translateY(-5px) translateX(-10px); }
-        }
-        
         input, select, textarea {
           transition: all 0.3s ease;
           background: rgba(0, 0, 0, 0.2) !important;
           border-color: rgba(79, 70, 229, 0.2) !important;
-          backdrop-filter: blur(4px);
         }
         
         input:focus, select:focus, textarea:focus {
