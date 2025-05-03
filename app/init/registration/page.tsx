@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaLock, FaCode, FaLightbulb, FaNetworkWired, FaBrain, FaKey, FaArrowRight, FaArrowLeft, FaLinkedin, FaFileUpload, FaIdCard, FaGraduationCap, FaPhone, FaEnvelope, FaGithub, FaUserAlt, FaFileAlt, FaCloudUploadAlt } from 'react-icons/fa';
+import {  FaLightbulb, FaNetworkWired, FaBrain, FaArrowRight, FaArrowLeft, FaFileUpload, FaIdCard, FaGraduationCap, FaPhone, FaEnvelope, FaGithub, FaUserAlt, FaFileAlt, FaCode } from 'react-icons/fa';
 import { submitRegistration, type RegistrationFormData } from '@/lib/registration-service';
 
 export default function RegistrationPage() {
