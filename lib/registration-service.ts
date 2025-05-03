@@ -11,13 +11,15 @@ export type RegistrationFormData = {
   threeWords: string;
   resume: File | null; // Add resume file field
   passions: string;
-  unlimitedProject: string;
+  // unlimitedProject: string; - Removed
   planFailReaction: string;
   groupRole: string;
-  motto: string;
+  // motto: string; - Removed
   communityConcept: string;
   collegeChange: string;
-  timeCommitment: string;
+  // timeCommitment: string; - Removed
+  // New field
+  githubLink: string;
   // New mindset questions
   joinReason: string;
   fieldExperience: string;
@@ -77,13 +79,14 @@ export async function submitRegistration(formData: RegistrationFormData) {
       personal_profile: formData.personalProfile,
       three_words: formData.threeWords,
       passions: formData.passions,
-      unlimited_project: formData.unlimitedProject,
+      // unlimited_project: formData.unlimitedProject, - Removed
       plan_fail_reaction: formData.planFailReaction,
       group_role: formData.groupRole,
-      motto: formData.motto,
+      // motto: formData.motto, - Removed
       community_concept: formData.communityConcept,
       college_change: formData.collegeChange,
-      time_commitment: formData.timeCommitment,
+      // time_commitment: formData.timeCommitment, - Removed
+      github_link: formData.githubLink,
       join_reason: formData.joinReason,
       field_experience: formData.fieldExperience,
       future_plans: formData.futurePlans,

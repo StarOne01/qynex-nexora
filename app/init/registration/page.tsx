@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaLock, FaCode, FaLightbulb, FaNetworkWired, FaBrain, FaKey, FaArrowRight, FaArrowLeft, FaLinkedin, FaFileUpload } from 'react-icons/fa';
+import { FaLock, FaCode, FaLightbulb, FaNetworkWired, FaBrain, FaKey, FaArrowRight, FaArrowLeft, FaLinkedin, FaFileUpload, FaIdCard, FaGraduationCap, FaPhone, FaEnvelope, FaGithub, FaUserAlt, FaFileAlt, FaCloudUploadAlt } from 'react-icons/fa';
 import { submitRegistration, type RegistrationFormData } from '@/lib/registration-service';
 
 export default function RegistrationPage() {
@@ -16,13 +16,11 @@ export default function RegistrationPage() {
     threeWords: '',
     resume: null,
     passions: '',
-    unlimitedProject: '',
     planFailReaction: '',
     groupRole: '',
-    motto: '',
     communityConcept: '',
     collegeChange: '',
-    timeCommitment: '',
+    githubLink: '',
     joinReason: '',
     fieldExperience: '',
     futurePlans: '',
@@ -149,16 +147,16 @@ export default function RegistrationPage() {
                formData.departmentYear && formData.phoneNumber && formData.email && 
                formData.personalProfile && formData.resume !== null;
       case 2: // Understanding You
-        return formData.threeWords && formData.passions && formData.unlimitedProject;
+        return formData.threeWords && formData.passions;
       case 3: // Mindset Test
         return formData.planFailReaction && formData.groupRole && 
-               formData.motto && formData.communityConcept && formData.collegeChange;
-      case 4: // Personal Journey (new step)
+               formData.communityConcept && formData.collegeChange;
+      case 4: // Personal Journey
         return formData.joinReason && formData.fieldExperience && 
                formData.futurePlans && formData.initiativeStory && formData.eventIdea;
-      case 5: // Availability & Contribution (now step 5)
-        return formData.timeCommitment && formData.roles.length > 0;
-      case 6: // Agreement (now step 6)
+      case 5: // Availability & Contribution
+        return formData.roles.length > 0;
+      case 6: // Agreement
         return formData.agreements.respect && formData.agreements.mindset;
       default:
         return true;
@@ -189,14 +187,14 @@ export default function RegistrationPage() {
                   onChange={handleChange}
                   required
                   className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                  placeholder="Your identity marker"
+                  placeholder="Your full name"
                 />
               </div>
               
               <div>
                 <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaKey className="mr-2" />
-                  ROLL NUMBER
+                  <FaIdCard className="mr-2" />
+                  REGISTRATION NUMBER
                 </label>
                 <input
                   type="text"
@@ -205,14 +203,16 @@ export default function RegistrationPage() {
                   onChange={handleChange}
                   required
                   className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                  placeholder="Your system identifier"
+                  placeholder="College registration number"
                 />
               </div>
-              
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaNetworkWired className="mr-2" />
-                  DEPARTMENT AND YEAR
+                  <FaGraduationCap className="mr-2" />
+                  DEPARTMENT & YEAR
                 </label>
                 <input
                   type="text"
@@ -221,13 +221,13 @@ export default function RegistrationPage() {
                   onChange={handleChange}
                   required
                   className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                  placeholder="Your operational sector"
+                  placeholder="e.g., CSE 2nd Year"
                 />
               </div>
               
               <div>
                 <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaLock className="mr-2" />
+                  <FaPhone className="mr-2" />
                   PHONE NUMBER
                 </label>
                 <input
@@ -237,14 +237,16 @@ export default function RegistrationPage() {
                   onChange={handleChange}
                   required
                   className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                  placeholder="Secure communication channel"
+                  placeholder="Your mobile number"
                 />
               </div>
-              
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaNetworkWired className="mr-2" />
-                  COLLEGE EMAIL ID
+                  <FaEnvelope className="mr-2" />
+                  EMAIL ADDRESS
                 </label>
                 <input
                   type="email"
@@ -253,51 +255,66 @@ export default function RegistrationPage() {
                   onChange={handleChange}
                   required
                   className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                  placeholder="Digital correspondence node"
+                  placeholder="Your email"
                 />
               </div>
               
               <div>
                 <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaLinkedin className="mr-2" />
-                  LINKEDIN PROFILE
+                  <FaGithub className="mr-2" />
+                  GITHUB OR PORTFOLIO URL
                 </label>
                 <input
                   type="url"
-                  name="personalProfile"
-                  value={formData.personalProfile}
+                  name="githubLink"
+                  value={formData.githubLink}
                   onChange={handleChange}
-                  required
                   className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                  placeholder="https://linkedin.com/in/yourprofile"
+                  placeholder="GitHub/Portfolio link (optional)"
                 />
               </div>
-
-              <div className="md:col-span-2">
-                <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaFileUpload className="mr-2" />
-                  RESUME UPLOAD
-                </label>
-                <div className="flex items-center">
+            </div>
+            
+            <div>
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaUserAlt className="mr-2" />
+                PERSONAL PROFILE
+              </label>
+              <textarea
+                name="personalProfile"
+                value={formData.personalProfile}
+                onChange={handleChange}
+                required
+                rows={3}
+                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                placeholder="Brief introduction about yourself"
+              />
+            </div>
+            
+            <div className="mt-4">
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaFileAlt className="mr-2" />
+                RESUME / CV
+              </label>
+              <div className="flex items-center">
                   <label className="w-full flex items-center justify-center bg-black/40 border border-dashed border-indigo-500 rounded p-3 text-indigo-300 cursor-pointer hover:bg-black/60 transition-all">
-                    <input
-                      type="file"
-                      name="resume"
-                      onChange={handleFileChange}
-                      required
-                      accept=".pdf,.doc,.docx"
-                      className="hidden"
-                    />
-                    <FaFileUpload className="mr-2" />
-                    {resumeFileName || "Upload your resume (PDF, DOC, DOCX)"}
-                  </label>
-                </div>
-                {resumeFileName && (
-                  <p className="mt-2 text-xs text-indigo-400">
-                    Selected: {resumeFileName}
-                  </p>
-                )}
+                <input
+                  type="file"
+                  name="resume"
+                  onChange={handleFileChange}
+                  required
+                  accept=".pdf,.doc,.docx"
+className="hidden"
+                />
+                <FaFileUpload className="mr-2" />
+                                  {resumeFileName || "Upload your resume (PDF, DOC, DOCX)"}
+                </label>
               </div>
+              {resumeFileName && (
+                <p className="mt-2 text-xs text-indigo-400">
+                  Selected: {resumeFileName}
+                </p>
+              )}
             </div>
           </div>
         );
@@ -341,22 +358,6 @@ export default function RegistrationPage() {
                 placeholder="Your cognitive drive vectors"
               />
             </div>
-            
-            <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaLightbulb className="mr-2" />
-                UNLIMITED PROJECT SCENARIO
-              </label>
-              <textarea
-                name="unlimitedProject"
-                value={formData.unlimitedProject}
-                onChange={handleChange}
-                required
-                rows={3}
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="If you had unlimited time and resources, what project or dream would you pursue?"
-              />
-            </div>
           </div>
         );
         
@@ -384,50 +385,27 @@ export default function RegistrationPage() {
               />
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaNetworkWired className="mr-2" />
-                  GROUP PROJECT ROLE
-                </label>
-                <select
-                  name="groupRole"
-                  value={formData.groupRole}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                >
-                  <option value="">Select your natural role</option>
-                  <option value="Leader">Leader</option>
-                  <option value="Creative Contributor">Creative Contributor</option>
-                  <option value="Organizer">Organizer</option>
-                  <option value="Motivator">Motivator</option>
-                  <option value="Researcher">Researcher</option>
-                  <option value="Finisher">Finisher</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaLightbulb className="mr-2" />
-                  GUIDING MOTTO
-                </label>
-                <select
-                  name="motto"
-                  value={formData.motto}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                >
-                  <option value="">Select a motto</option>
-                  <option value="Learn and Adapt">&quot;Learn and Adapt&quot;</option>
-                  <option value="Build Fearlessly">&quot;Build Fearlessly&quot;</option>
-                  <option value="Create with Purpose">&quot;Create with Purpose&quot;</option>
-                  <option value="Lead with Heart">&quot;Lead with Heart&quot;</option>
-                  <option value="Grow Together">&quot;Grow Together, Shine Together&quot;</option>
-                </select>
-              </div>
+            <div>
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaNetworkWired className="mr-2" />
+                GROUP PROJECT ROLE
+              </label>
+              <select
+                name="groupRole"
+                value={formData.groupRole}
+                onChange={handleChange}
+                required
+                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+              >
+                <option value="">Select your natural role</option>
+                <option value="Leader">Leader</option>
+                <option value="Creative Contributor">Creative Contributor</option>
+                <option value="Organizer">Organizer</option>
+                <option value="Motivator">Motivator</option>
+                <option value="Researcher">Researcher</option>
+                <option value="Finisher">Finisher</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
             
             <div>
@@ -578,26 +556,6 @@ export default function RegistrationPage() {
             </h2>
             
             <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaNetworkWired className="mr-2" />
-                TIME COMMITMENT PER MONTH
-              </label>
-              <select
-                name="timeCommitment"
-                value={formData.timeCommitment}
-                onChange={handleChange}
-                required
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-              >
-                <option value="">Select your time dedication</option>
-                <option value="2-4 hours">2-4 hours</option>
-                <option value="4-6 hours">4-6 hours</option>
-                <option value="6+ hours">6+ hours</option>
-                <option value="Whatever it takes">I&apos;ll give what it takes.</option>
-              </select>
-            </div>
-            
-            <div>
               <label className="flex items-center text-xs text-indigo-300 mb-3">
                 <FaLightbulb className="mr-2" />
                 ROLES YOU WOULD LOVE TO EXPLORE
@@ -626,12 +584,27 @@ export default function RegistrationPage() {
                       checked={formData.roles.includes(role)}
                       className="mr-2 border-indigo-500 text-indigo-600 focus:ring-indigo-500 h-4 w-4 bg-black"
                     />
-                    <label htmlFor={`role-${role}`} className="text-indigo-200 text-sm">
+                    <label htmlFor={`role-${role}`} className="text-sm text-indigo-200">
                       {role}
                     </label>
                   </div>
                 ))}
               </div>
+            </div>
+            
+            <div>
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaNetworkWired className="mr-2" />
+                ANYTHING ELSE?
+              </label>
+              <textarea
+                name="additionalInfo"
+                value={formData.additionalInfo}
+                onChange={handleChange}
+                rows={2}
+                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                placeholder="Is there anything else you'd like us to know about you? (Optional)"
+              />
             </div>
           </div>
         );
