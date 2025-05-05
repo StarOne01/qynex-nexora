@@ -799,7 +799,7 @@ className="hidden"
       </motion.div>
       
       <div className="m-8 text-xs text-indigo-700 text-center">
-      <p>Contact: <a href="tel:9791329416" className="text-indigo-500 hover:text-indigo-300">Prashanth +9791329416</a></p>
+      <p>Contact: <a href="tel:9791329416" className="text-indigo-500 hover:text-indigo-300">StarOne01 +9791329416</a></p>
         <p>CONNECTION SECURED • RSA ENCRYPTION ENABLED • ALL TRANSMISSIONS ANONYMOUS</p>
       </div>
       
