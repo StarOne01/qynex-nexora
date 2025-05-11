@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLightbulb, FaNetworkWired, FaBrain, FaArrowRight, FaArrowLeft, FaFileUpload, FaGraduationCap, FaPhone, FaEnvelope, FaGithub, FaUserAlt, FaFileAlt, FaCode, FaSchool, FaProjectDiagram, FaTools } from 'react-icons/fa';
 import { submitRegistration, type RegistrationFormData } from '@/lib/registration-service';
+import Link from 'next/link';
 
 export default function RegistrationPage() {
   // Generate random sequence number for display
@@ -453,7 +454,7 @@ export default function RegistrationPage() {
             <div>
               <label className="flex items-center text-xs text-indigo-300 mb-1">
                 <FaProjectDiagram className="mr-2" />
-                PROJECTS YOU'VE WORKED ON
+                PROJECTS YOU&apos;VE WORKED ON
               </label>
               <textarea
                 name="projects"
@@ -568,7 +569,7 @@ export default function RegistrationPage() {
             
             <div>
               <p className="text-sm text-indigo-300 mb-4">
-                Check out our <a href="/" className="text-indigo-400 hover:text-indigo-300 underline">communities page</a> to learn more about our specialized groups.
+                Check out our <Link href="/" className="text-indigo-400 hover:text-indigo-300 underline">communities page</Link> to learn more about our specialized groups.
               </p>
               
               <label className="flex items-center text-xs text-indigo-300 mb-3">

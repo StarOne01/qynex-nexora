@@ -162,7 +162,7 @@ export default function Home() {
       </section>
 
       {/* Featured Communities */}
-      <section className="px-4 sm:px-6 py-16 sm:py-24 bg-[#0A0B14]">
+      <section id='comm' className="px-4 sm:px-6 py-16 sm:py-24 bg-[#0A0B14]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-black text-center mb-3 sm:mb-4">Popular <span className="bg-gradient-to-r from-[#6C63FF] to-[#2D3AF2] bg-clip-text text-transparent">Communities</span></h2>
           <p className="text-center text-gray-400 mb-4 sm:mb-6 text-lg sm:text-xl">Join these amazing groups and start creating with others</p>
@@ -196,19 +196,31 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
             {[
-              { name: "Digital Art", icon: "◈", examples: "Illustration, Animation, Design" },
-              { name: "Music", icon: "⧖", examples: "Production, Performance, Theory" },
-              { name: "Coding", icon: "⧗", examples: "Web, Apps, AI, Games" },
-              { name: "Writing", icon: "⟐", examples: "Fiction, Poetry, Journalism" },
-              { name: "Science", icon: "⧫", examples: "Physics, Biology, Astronomy" },
-              { name: "Editing", icon: "⟡", examples: "Video, Music, Image" },
-              { name: "Engineering", icon: "⟢", examples: "Robotics, Electronics, Making" },
-              { name: "Design", icon: "✧", examples: "UX/UI, Product, Architecture" }
+              { name: "Digital Art", icon: "◈", examples: "Illustration, Animation, Design", count: "24" },
+              { name: "Music", icon: "⧖", examples: "Production, Performance, Theory", count: "18" },
+              { name: "Coding", icon: "⧗", examples: "Web, Apps, AI, Games", count: "32" },
+              { name: "Writing", icon: "⟐", examples: "Fiction, Poetry, Journalism", count: "15" },
+              { name: "Science", icon: "⧫", examples: "Physics, Biology, Astronomy", count: "22" },
+              { name: "Editing", icon: "⟡", examples: "Video, Music, Image", count: "17" },
+              { name: "Engineering", icon: "⟢", examples: "Robotics, Electronics, Making", count: "19" },
+              { name: "Design", icon: "✧", examples: "UX/UI, Product, Architecture", count: "28" },
+              { name: "Photography", icon: "◎", examples: "Portrait, Landscape, Street", count: "21" },
+              { name: "Business", icon: "◬", examples: "Startups, Marketing, Finance", count: "16" },
+              { name: "Filmmaking", icon: "⧉", examples: "Directors, Screenwriting, VFX", count: "14" },
+              { name: "Gaming", icon: "◭", examples: "Esports, Development, Streaming", count: "26" }
             ].map((category, i) => (
-              <div key={i} className="bg-[#12131E] border border-[#222536] p-4 sm:p-6 rounded-lg hover:border-[#6C63FF] transition text-center transform hover:-translate-y-1">
+              <div key={i} className="bg-[#12131E] border border-[#222536] p-4 sm:p-6 rounded-lg hover:border-[#6C63FF] hover:shadow-[0_0_15px_rgba(108,99,255,0.15)] transition text-center transform hover:-translate-y-1 group relative overflow-hidden">
+                <div className="absolute top-2 right-2 bg-[#6C63FF]/10 px-2 py-0.5 rounded-full text-xs text-[#6C63FF]">
+                  {category.count} communities
+                </div>
                 <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 bg-gradient-to-r from-[#6C63FF] to-[#2D3AF2] bg-clip-text text-transparent">{category.icon}</div>
                 <h3 className="font-bold text-base sm:text-lg mb-0.5 sm:mb-1 text-white">{category.name}</h3>
                 <p className="text-xs sm:text-sm text-gray-400">{category.examples}</p>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#6C63FF]/80 to-[#2D3AF2]/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <Link href={"/init/registration"}>  <button className="bg-white text-[#12131E] px-4 py-2 rounded-md font-medium text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    Explore →
+                  </button></Link>
+                </div>
               </div>
             ))}
           </div>
@@ -256,7 +268,7 @@ export default function Home() {
             onClick={() => window.open('/init/registration')}
             className="bg-gradient-to-r from-[#6C63FF] to-[#2D3AF2] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-md text-lg sm:text-xl font-bold hover:shadow-[0_0_25px_rgba(108,99,255,0.5)] transition transform hover:-translate-y-1"
           >
-            Get Started — It&apos;s Free ✧
+            Get Started - Find them!✧
           </button>
         </div>
       </section>
@@ -270,9 +282,8 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap justify-center gap-5 sm:gap-8 text-base sm:text-lg">
             <Link href="#" className="text-gray-300 hover:text-[#6C63FF] transition">About</Link>
-            <Link href="#" className="text-gray-300 hover:text-[#6C63FF] transition">Communities</Link>
-            <Link href="#" className="text-gray-300 hover:text-[#6C63FF] transition">Events</Link>
-            <Link href="#" className="text-gray-300 hover:text-[#6C63FF] transition">Contact</Link>
+            <Link href="#comm" className="text-gray-300 hover:text-[#6C63FF] transition">Communities</Link>
+            <Link href="mailto:qynexnexora@gmail.com" className="text-gray-300 hover:text-[#6C63FF] transition">Contact</Link>
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-[#1A1C2A] text-center text-gray-400">

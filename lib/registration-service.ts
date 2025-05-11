@@ -1,6 +1,4 @@
-import { randomInt } from 'crypto';
 import { supabase } from './supabase-client';
-import { use } from 'react';
 
 // Define a type for the registration form data
 export type RegistrationFormData = {
