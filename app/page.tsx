@@ -131,7 +131,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="px-4 sm:px-6 pt-28 sm:pt-40 pb-16 sm:pb-24 flex flex-col min-h-[90vh] sm:h-screen items-center text-center relative">
+      <section className="px-4 sm:px-6 pt-28 sm:pt-40 pb-16 sm:pb-24 flex flex-col justify-center min-h-[90vh] sm:h-screen items-center text-center relative">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-[#0A0B14]/90 -z-10"></div>
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-4 sm:mb-6 leading-tight">
           Find Your <span className="text-[#6C63FF]">People</span> at<br />
@@ -143,7 +143,7 @@ export default function Home() {
           Connect with amazing people who share your passion for <span className="text-[#6C63FF]">creating</span>, <span className="text-[#2D3AF2]">learning</span>, and <span className="text-[#8B5CF6]">exploring</span> together
         </p>
         <p className="text-base sm:text-lg text-gray-400 max-w-2xl mb-8 sm:mb-10">
-          Born in Tamil Nadu, now connecting passionate creators and innovators everywhere
+          Born in Tamil Nadu, now connecting passionate student creators and innovators everywhere
         </p>
         <div className="flex flex-col w-full sm:w-auto sm:flex-row gap-4 sm:gap-6">
           <button 

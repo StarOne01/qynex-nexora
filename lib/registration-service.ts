@@ -1,36 +1,33 @@
+import { randomInt } from 'crypto';
 import { supabase } from './supabase-client';
+import { use } from 'react';
 
 // Define a type for the registration form data
 export type RegistrationFormData = {
   fullName: string;
-  registrationNumber: string;
-  departmentYear: string;
+  educationLevel: string;
+  yearOfStudy: string;
+  institutionName: string;
   phoneNumber: string;
   email: string;
   personalProfile: string;
   threeWords: string;
-  resume: File | null; // Add resume file field
-  passions: string;
-  // unlimitedProject: string; - Removed
+  resume: File | null;
+  skills: string; // New field
   planFailReaction: string;
   groupRole: string;
-  // motto: string; - Removed
   communityConcept: string;
-  collegeChange: string;
-  // timeCommitment: string; - Removed
-  // New field
+  projects: string;
   githubLink: string;
-  // New mindset questions
   joinReason: string;
   fieldExperience: string;
   futurePlans: string;
   initiativeStory: string;
   eventIdea: string;
-  additionalInfo: string;  // Optional field
+  additionalInfo: string;
   roles: string[];
   agreements: {
     respect: boolean;
-    noGadget: boolean;
     mindset: boolean;
   };
 };
@@ -42,10 +39,11 @@ export async function submitRegistration(formData: RegistrationFormData) {
     // Upload resume to storage if provided
     if (formData.resume) {
       const fileExt = formData.resume.name.split('.').pop();
-      const fileName = `${formData.registrationNumber.replace(/\s+/g, '_')}_${Date.now()}.${fileExt}`;
+      const fileName = `${formData.fullName.replace(/\s+/g, '_')}_${Date.now()}.${fileExt}`;
+      const email = formData.email.replace(/[^a-zA-Z0-9]/g, '_'); // Sanitize email for file name
       
-      // Create a more secure file path with user's registration number
-      const filePath = `public/${formData.registrationNumber.replace(/\s+/g, '_')}/${fileName}`;
+      // Create a more secure file path with user's name
+      const filePath = `public/${formData.fullName.replace(/\s+/g, '_')}_${email}/${fileName}`;
       
       // Upload to Supabase storage - works for unauthenticated users with proper bucket policy
       const { error: fileError } = await supabase.storage
@@ -72,20 +70,19 @@ export async function submitRegistration(formData: RegistrationFormData) {
     // Format the data to match the expected schema
     const submissionData = {
       full_name: formData.fullName,
-      registration_number: formData.registrationNumber,
-      department_year: formData.departmentYear,
+      education_level: formData.educationLevel,
+      year_of_study: formData.yearOfStudy,
+      institution_name: formData.institutionName,
       phone_number: formData.phoneNumber,
       email: formData.email,
       personal_profile: formData.personalProfile,
       three_words: formData.threeWords,
-      passions: formData.passions,
-      // unlimited_project: formData.unlimitedProject, - Removed
+      // passions: formData.passions, - Removed
+      skills: formData.skills, // New field
+      projects: formData.projects,
       plan_fail_reaction: formData.planFailReaction,
       group_role: formData.groupRole,
-      // motto: formData.motto, - Removed
       community_concept: formData.communityConcept,
-      college_change: formData.collegeChange,
-      // time_commitment: formData.timeCommitment, - Removed
       github_link: formData.githubLink,
       join_reason: formData.joinReason,
       field_experience: formData.fieldExperience,
@@ -95,7 +92,7 @@ export async function submitRegistration(formData: RegistrationFormData) {
       additional_info: formData.additionalInfo,
       roles: formData.roles.join(', '),
       agreements: JSON.stringify(formData.agreements),
-      resume_url: resumeUrl, // Add the resume URL to database record
+      resume_url: resumeUrl,
       created_at: new Date().toISOString()
     };
 

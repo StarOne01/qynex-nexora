@@ -2,25 +2,30 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {  FaLightbulb, FaNetworkWired, FaBrain, FaArrowRight, FaArrowLeft, FaFileUpload, FaIdCard, FaGraduationCap, FaPhone, FaEnvelope, FaGithub, FaUserAlt, FaFileAlt, FaCode } from 'react-icons/fa';
+import { FaLightbulb, FaNetworkWired, FaBrain, FaArrowRight, FaArrowLeft, FaFileUpload, FaGraduationCap, FaPhone, FaEnvelope, FaGithub, FaUserAlt, FaFileAlt, FaCode, FaSchool, FaProjectDiagram, FaTools } from 'react-icons/fa';
 import { submitRegistration, type RegistrationFormData } from '@/lib/registration-service';
 
 export default function RegistrationPage() {
+  // Generate random sequence number for display
+  const [sequenceNumber] = useState(() => Math.floor(100000 + Math.random() * 900000));
+
   const [formData, setFormData] = useState<RegistrationFormData>({
     fullName: '',
-    registrationNumber: '',
-    departmentYear: '',
+    educationLevel: '',
+    yearOfStudy: '',
+    institutionName: '',
     phoneNumber: '',
     email: '',
     personalProfile: '',
     threeWords: '',
     resume: null,
-    passions: '',
+    // passions removed
+    skills: '', // New field
     planFailReaction: '',
     groupRole: '',
     communityConcept: '',
-    collegeChange: '',
     githubLink: '',
+    projects: '',
     joinReason: '',
     fieldExperience: '',
     futurePlans: '',
@@ -30,7 +35,6 @@ export default function RegistrationPage() {
     roles: [] as string[],
     agreements: {
       respect: false,
-      noGadget: false,
       mindset: false
     }
   });
@@ -143,19 +147,19 @@ export default function RegistrationPage() {
   const isCurrentStepValid = () => {
     switch (currentStep) {
       case 1: // Basic Information
-        return formData.fullName && formData.registrationNumber && 
-               formData.departmentYear && formData.phoneNumber && formData.email && 
-               formData.personalProfile && formData.resume !== null;
+        return formData.fullName && formData.educationLevel && formData.institutionName &&
+               formData.yearOfStudy && formData.phoneNumber && formData.email;
       case 2: // Understanding You
-        return formData.threeWords && formData.passions;
+        return formData.personalProfile && formData.threeWords && formData.skills && 
+               formData.githubLink && formData.resume !== null;
       case 3: // Mindset Test
         return formData.planFailReaction && formData.groupRole && 
-               formData.communityConcept && formData.collegeChange;
+               formData.communityConcept && formData.projects;
       case 4: // Personal Journey
         return formData.joinReason && formData.fieldExperience && 
-               formData.futurePlans && formData.initiativeStory && formData.eventIdea;
+               formData.futurePlans && formData.initiativeStory;
       case 5: // Availability & Contribution
-        return formData.roles.length > 0;
+        return formData.roles.length > 0 && formData.eventIdea;
       case 6: // Agreement
         return formData.agreements.respect && formData.agreements.mindset;
       default:
@@ -177,7 +181,7 @@ export default function RegistrationPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaCode className="mr-2" />
+                  <FaUserAlt className="mr-2" />
                   FULL NAME
                 </label>
                 <input
@@ -193,18 +197,23 @@ export default function RegistrationPage() {
               
               <div>
                 <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaIdCard className="mr-2" />
-                  REGISTRATION NUMBER
+                  <FaSchool className="mr-2" />
+                  EDUCATION LEVEL
                 </label>
-                <input
-                  type="text"
-                  name="registrationNumber"
-                  value={formData.registrationNumber}
+                <select
+                  name="educationLevel"
+                  value={formData.educationLevel}
                   onChange={handleChange}
                   required
                   className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                  placeholder="College registration number"
-                />
+                >
+                  <option value="">Select your education level</option>
+                  <option value="School">School</option>
+                  <option value="Junior College">Junior College</option>
+                  <option value="College/University">College/University</option>
+                  <option value="Working Professional">Working Professional</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
             </div>
             
@@ -212,19 +221,37 @@ export default function RegistrationPage() {
               <div>
                 <label className="flex items-center text-xs text-indigo-300 mb-1">
                   <FaGraduationCap className="mr-2" />
-                  DEPARTMENT & YEAR
+                  INSTITUTION NAME
                 </label>
                 <input
                   type="text"
-                  name="departmentYear"
-                  value={formData.departmentYear}
+                  name="institutionName"
+                  value={formData.institutionName}
                   onChange={handleChange}
                   required
                   className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                  placeholder="e.g., CSE 2nd Year"
+                  placeholder="Name of your school/college"
                 />
               </div>
               
+              <div>
+                <label className="flex items-center text-xs text-indigo-300 mb-1">
+                  <FaGraduationCap className="mr-2" />
+                  YEAR OF STUDY
+                </label>
+                <input
+                  type="text"
+                  name="yearOfStudy"
+                  value={formData.yearOfStudy}
+                  onChange={handleChange}
+                  required
+                  className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                  placeholder="e.g., 2nd Year, Final Year"
+                />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label className="flex items-center text-xs text-indigo-300 mb-1">
                   <FaPhone className="mr-2" />
@@ -240,9 +267,7 @@ export default function RegistrationPage() {
                   placeholder="Your mobile number"
                 />
               </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              
               <div>
                 <label className="flex items-center text-xs text-indigo-300 mb-1">
                   <FaEnvelope className="mr-2" />
@@ -258,22 +283,17 @@ export default function RegistrationPage() {
                   placeholder="Your email"
                 />
               </div>
-              
-              <div>
-                <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaGithub className="mr-2" />
-                  GITHUB OR PORTFOLIO URL
-                </label>
-                <input
-                  type="url"
-                  name="githubLink"
-                  value={formData.githubLink}
-                  onChange={handleChange}
-                  className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                  placeholder="GitHub/Portfolio link (optional)"
-                />
-              </div>
             </div>
+          </div>
+        );
+        
+      case 2:
+        return (
+          <div className="space-y-6">
+            <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
+              <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">2</span>
+              Your Profile
+            </h2>
             
             <div>
               <label className="flex items-center text-xs text-indigo-300 mb-1">
@@ -290,42 +310,6 @@ export default function RegistrationPage() {
                 placeholder="Brief introduction about yourself"
               />
             </div>
-            
-            <div className="mt-4">
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaFileAlt className="mr-2" />
-                RESUME / CV
-              </label>
-              <div className="flex items-center">
-                  <label className="w-full flex items-center justify-center bg-black/40 border border-dashed border-indigo-500 rounded p-3 text-indigo-300 cursor-pointer hover:bg-black/60 transition-all">
-                <input
-                  type="file"
-                  name="resume"
-                  onChange={handleFileChange}
-                  required
-                  accept=".pdf,.doc,.docx"
-className="hidden"
-                />
-                <FaFileUpload className="mr-2" />
-                                  {resumeFileName || "Upload your resume (PDF, DOC, DOCX)"}
-                </label>
-              </div>
-              {resumeFileName && (
-                <p className="mt-2 text-xs text-indigo-400">
-                  Selected: {resumeFileName}
-                </p>
-              )}
-            </div>
-          </div>
-        );
-        
-      case 2:
-        return (
-          <div className="space-y-6">
-            <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
-              <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">2</span>
-              Understanding You
-            </h2>
             
             <div>
               <label className="flex items-center text-xs text-indigo-300 mb-1">
@@ -345,18 +329,60 @@ className="hidden"
             
             <div>
               <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaLightbulb className="mr-2" />
-                WHAT ARE YOU PASSIONATE ABOUT LEARNING OR CREATING?
+                <FaTools className="mr-2" />
+                YOUR SKILLS
               </label>
               <textarea
-                name="passions"
-                value={formData.passions}
+                name="skills"
+                value={formData.skills}
                 onChange={handleChange}
                 required
                 rows={3}
                 className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="Your cognitive drive vectors"
+                placeholder="List your technical and non-technical skills (e.g., React, UI Design, Public Speaking, etc.)"
               />
+            </div>
+            
+            <div>
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaGithub className="mr-2" />
+                GITHUB OR PORTFOLIO URL
+              </label>
+              <input
+                type="url"
+                name="githubLink"
+                value={formData.githubLink}
+                onChange={handleChange}
+                required
+                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                placeholder="GitHub/Portfolio link"
+              />
+            </div>
+            
+            <div className="mt-4">
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaFileAlt className="mr-2" />
+                RESUME / CV
+              </label>
+              <div className="flex items-center">
+                <label className="w-full flex items-center justify-center bg-black/40 border border-dashed border-indigo-500 rounded p-3 text-indigo-300 cursor-pointer hover:bg-black/60 transition-all">
+                  <input
+                    type="file"
+                    name="resume"
+                    onChange={handleFileChange}
+                    required
+                    accept=".pdf,.doc,.docx"
+                    className="hidden"
+                  />
+                  <FaFileUpload className="mr-2" />
+                  {resumeFileName || "Upload your resume (PDF, DOC, DOCX)"}
+                </label>
+              </div>
+              {resumeFileName && (
+                <p className="mt-2 text-xs text-indigo-400">
+                  Selected: {resumeFileName}
+                </p>
+              )}
             </div>
           </div>
         );
@@ -426,17 +452,17 @@ className="hidden"
             
             <div>
               <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaLightbulb className="mr-2" />
-                COLLEGE ENVIRONMENT CHANGE
+                <FaProjectDiagram className="mr-2" />
+                PROJECTS YOU'VE WORKED ON
               </label>
               <textarea
-                name="collegeChange"
-                value={formData.collegeChange}
+                name="projects"
+                value={formData.projects}
                 onChange={handleChange}
                 required
-                rows={2}
+                rows={3}
                 className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="If you could change one thing about your college, what would it be?"
+                placeholder="Describe some projects you've worked on (include links if available)"
               />
             </div>
           </div>
@@ -513,6 +539,16 @@ className="hidden"
                 placeholder="Describe a time when you took initiative to solve a problem or lead a project. What challenges did you face and what was the outcome?"
               />
             </div>
+          </div>
+        );
+        
+      case 5:
+        return (
+          <div className="space-y-6">
+            <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
+              <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">5</span>
+              Contribution & Ideas
+            </h2>
             
             <div>
               <label className="flex items-center text-xs text-indigo-300 mb-1">
@@ -531,31 +567,10 @@ className="hidden"
             </div>
             
             <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaNetworkWired className="mr-2" />
-                ANYTHING ELSE?
-              </label>
-              <textarea
-                name="additionalInfo"
-                value={formData.additionalInfo}
-                onChange={handleChange}
-                rows={2}
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="Is there anything else you'd like us to know about you? (Optional)"
-              />
-            </div>
-          </div>
-        );
-        
-      case 5:
-        return (
-          <div className="space-y-6">
-            <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
-              <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">5</span>
-              Availability & Contribution
-            </h2>
-            
-            <div>
+              <p className="text-sm text-indigo-300 mb-4">
+                Check out our <a href="/" className="text-indigo-400 hover:text-indigo-300 underline">communities page</a> to learn more about our specialized groups.
+              </p>
+              
               <label className="flex items-center text-xs text-indigo-300 mb-3">
                 <FaLightbulb className="mr-2" />
                 ROLES YOU WOULD LOVE TO EXPLORE
@@ -690,11 +705,11 @@ className="hidden"
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500">INITIALIZATION</span>
             </h1>
             <p className="text-sm text-center mb-4 text-indigo-300/80">
-              &#123; v1.0 // sequence: 847392 &#125;
+              &#123; v1.0 // sequence: {sequenceNumber} &#125;
             </p>
           </motion.div>
           
-          {/* Add back the terminal text component */}
+          {/* Terminal text component */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -705,7 +720,7 @@ className="hidden"
               <div className="h-2 w-2 rounded-full bg-indigo-600"></div>
               <div className="h-2 w-2 rounded-full bg-indigo-400"></div>
               <div className="h-2 w-2 rounded-full bg-indigo-300"></div>
-              <span>terminal_847392</span>
+              <span>terminal_{sequenceNumber}</span>
             </div>
             <pre className="text-xs whitespace-pre-wrap text-indigo-100">{terminalText}</pre>
             <span className="inline-block h-4 w-2 bg-indigo-400 animate-pulse"></span>
@@ -716,7 +731,7 @@ className="hidden"
               {/* Step indicator */}
               <div className="mb-4 flex justify-between items-center text-xs text-indigo-400">
                 <span>Step {currentStep} of {totalSteps}</span>
-                <span>{["Identity", "Mindscape", "Neural Patterns", "Your Journey", "Contribution", "Protocol"][currentStep-1]}</span>
+                <span>{["Basic Info", "Profile", "Mindset", "Journey", "Contribution", "Agreement"][currentStep-1]}</span>
               </div>
               
               <ProgressBar />
@@ -799,7 +814,7 @@ className="hidden"
       </motion.div>
       
       <div className="m-8 text-xs text-indigo-700 text-center">
-      <p>Contact: <a href="tel:9791329416" className="text-indigo-500 hover:text-indigo-300">StarOne01 +9791329416</a></p>
+        <p>Contact: <a href="tel:9791329416" className="text-indigo-500 hover:text-indigo-300">StarOne01 +9791329416</a></p>
         <p>CONNECTION SECURED • RSA ENCRYPTION ENABLED • ALL TRANSMISSIONS ANONYMOUS</p>
       </div>
       
