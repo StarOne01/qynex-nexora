@@ -12,6 +12,7 @@ export type RegistrationFormData = {
   threeWords: string;
   resume: File | null;
   skills: string; // New field
+  location: string; // Added location field
   planFailReaction: string;
   groupRole: string;
   communityConcept: string;

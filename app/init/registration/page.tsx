@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaLightbulb, FaNetworkWired, FaBrain, FaArrowRight, FaArrowLeft, FaFileUpload, FaGraduationCap, FaPhone, FaEnvelope, FaGithub, FaUserAlt, FaFileAlt, FaCode, FaSchool, FaProjectDiagram, FaTools } from 'react-icons/fa';
+import { FaLightbulb, FaNetworkWired, FaBrain, FaArrowRight, FaArrowLeft, FaFileUpload, FaGraduationCap, FaPhone, FaEnvelope, FaGithub, FaUserAlt, FaFileAlt, FaCode, FaSchool, FaProjectDiagram, FaTools, FaMapMarkerAlt } from 'react-icons/fa';
 import { submitRegistration, type RegistrationFormData } from '@/lib/registration-service';
 import Link from 'next/link';
 
@@ -22,6 +22,7 @@ export default function RegistrationPage() {
     resume: null,
     // passions removed
     skills: '', // New field
+    location: '', // Added location field
     planFailReaction: '',
     groupRole: '',
     communityConcept: '',
@@ -149,7 +150,7 @@ export default function RegistrationPage() {
     switch (currentStep) {
       case 1: // Basic Information
         return formData.fullName && formData.educationLevel && formData.institutionName &&
-               formData.yearOfStudy && formData.phoneNumber && formData.email;
+               formData.yearOfStudy && formData.phoneNumber && formData.email && formData.location;
       case 2: // Understanding You
         return formData.personalProfile && formData.threeWords && formData.skills && 
                formData.githubLink && formData.resume !== null;
@@ -255,6 +256,22 @@ export default function RegistrationPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label className="flex items-center text-xs text-indigo-300 mb-1">
+                  <FaMapMarkerAlt className="mr-2" />
+                  LOCATION
+                </label>
+                <input
+                  type="text"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleChange}
+                  required
+                  className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                  placeholder="City, Country"
+                />
+              </div>
+              
+              <div>
+                <label className="flex items-center text-xs text-indigo-300 mb-1">
                   <FaPhone className="mr-2" />
                   PHONE NUMBER
                 </label>
@@ -268,22 +285,22 @@ export default function RegistrationPage() {
                   placeholder="Your mobile number"
                 />
               </div>
-              
-              <div>
-                <label className="flex items-center text-xs text-indigo-300 mb-1">
-                  <FaEnvelope className="mr-2" />
-                  EMAIL ADDRESS
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                  placeholder="Your email"
-                />
-              </div>
+            </div>
+            
+            <div>
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaEnvelope className="mr-2" />
+                EMAIL ADDRESS
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                placeholder="Your email"
+              />
             </div>
           </div>
         );
@@ -815,7 +832,6 @@ export default function RegistrationPage() {
       </motion.div>
       
       <div className="m-8 text-xs text-indigo-700 text-center">
-        <p>Contact: <a href="tel:9791329416" className="text-indigo-500 hover:text-indigo-300">StarOne01 +9791329416</a></p>
         <p>CONNECTION SECURED • RSA ENCRYPTION ENABLED • ALL TRANSMISSIONS ANONYMOUS</p>
       </div>
       
