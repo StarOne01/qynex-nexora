@@ -328,7 +328,7 @@ export default function Home() {
 
         <div 
           className={`max-w-3xl mx-auto relative z-10 animate-on-scroll ${
-            animatedItems.includes(25) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+           "opacity-100 translate-y-0"
           } transition-all duration-1000`}
         >
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-black mb-4 sm:mb-6">Ready to <span className="bg-gradient-to-r from-[#6C63FF] to-[#2D3AF2] bg-clip-text text-transparent">Join Us</span>?</h2>
