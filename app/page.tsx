@@ -184,12 +184,6 @@ export default function Home() {
             >
               <span className="animate-bounce-light inline-block mr-1">✧</span> Find Your Community
             </button>
-            <button 
-              onClick={() => window.open('/init/registration')}
-              className="bg-transparent border border-[#6C63FF] text-white px-5 sm:px-8 py-2.5 sm:py-4 rounded-md text-base sm:text-lg font-bold hover:bg-[#6C63FF]/10 transition transform hover:-translate-y-1 active:translate-y-0"
-            >
-              <span className="animate-spin-slow inline-block mr-1">⟡</span> Browse Interests
-            </button>
           </div>
         </div>
       </section>
