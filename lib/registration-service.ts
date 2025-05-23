@@ -8,23 +8,13 @@ export type RegistrationFormData = {
   institutionName: string;
   phoneNumber: string;
   email: string;
-  personalProfile: string;
-  threeWords: string;
+  location: string;
   resume: File | null;
-  skills: string; // New field
-  location: string; // Added location field
-  planFailReaction: string;
-  groupRole: string;
-  communityConcept: string;
-  projects: string;
-  githubLink: string;
-  joinReason: string;
-  fieldExperience: string;
-  futurePlans: string;
-  initiativeStory: string;
-  eventIdea: string;
-  additionalInfo: string;
-  roles: string[];
+  passion: string;    // New field about user's passion
+  experience: string; // New field about user's experience
+  skills: string;     // Field for user's skills
+  joinReason: string; // Why they want to join
+  contribution: string; // How they would contribute
   agreements: {
     respect: boolean;
     mindset: boolean;
@@ -74,23 +64,14 @@ export async function submitRegistration(formData: RegistrationFormData) {
       institution_name: formData.institutionName,
       phone_number: formData.phoneNumber,
       email: formData.email,
-      personal_profile: formData.personalProfile,
-      three_words: formData.threeWords,
-      // passions: formData.passions, - Removed
-      skills: formData.skills, // New field
-      projects: formData.projects,
-      plan_fail_reaction: formData.planFailReaction,
-      group_role: formData.groupRole,
-      community_concept: formData.communityConcept,
-      github_link: formData.githubLink,
+      location: formData.location,
+      passion: formData.passion,
+      experience: formData.experience,
+      skills: formData.skills,
       join_reason: formData.joinReason,
-      field_experience: formData.fieldExperience,
-      future_plans: formData.futurePlans,
-      initiative_story: formData.initiativeStory,
-      event_idea: formData.eventIdea,
-      additional_info: formData.additionalInfo,
-      roles: formData.roles.join(', '),
-      agreements: JSON.stringify(formData.agreements),
+      contribution: formData.contribution,
+      respect_agreement: formData.agreements.respect,
+      mindset_agreement: formData.agreements.mindset,
       resume_url: resumeUrl,
       created_at: new Date().toISOString()
     };

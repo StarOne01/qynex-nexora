@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaLightbulb, FaNetworkWired, FaBrain, FaArrowRight, FaArrowLeft, FaFileUpload, FaGraduationCap, FaPhone, FaEnvelope, FaGithub, FaUserAlt, FaFileAlt, FaCode, FaSchool, FaProjectDiagram, FaTools, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaLightbulb, FaArrowRight, FaArrowLeft, FaFileUpload, FaGraduationCap, FaPhone, FaEnvelope, FaGithub, FaUserAlt, FaFileAlt, FaTools, FaSchool, FaMapMarkerAlt } from 'react-icons/fa';
 import { submitRegistration, type RegistrationFormData } from '@/lib/registration-service';
 import Link from 'next/link';
 
@@ -17,33 +17,22 @@ export default function RegistrationPage() {
     institutionName: '',
     phoneNumber: '',
     email: '',
-    personalProfile: '',
-    threeWords: '',
+    location: '',
     resume: null,
-    // passions removed
-    skills: '', // New field
-    location: '', // Added location field
-    planFailReaction: '',
-    groupRole: '',
-    communityConcept: '',
-    githubLink: '',
-    projects: '',
-    joinReason: '',
-    fieldExperience: '',
-    futurePlans: '',
-    initiativeStory: '',
-    eventIdea: '',
-    additionalInfo: '',
-    roles: [] as string[],
+    passion: '', // New field for passion
+    experience: '', // New field for experience
+    skills: '', // Field for skills
+    joinReason: '', // Why they want to join
+    contribution: '', // How they would contribute
     agreements: {
       respect: false,
       mindset: false
     }
   });
   
-  // Add state for tracking current step
+  // Add state for tracking current step (reduced to 3 steps)
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 6;
+  const totalSteps = 3;
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -93,16 +82,7 @@ export default function RegistrationPage() {
   const handleCheckboxChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     
-    if (name.startsWith('role-')) {
-      const role = name.replace('role-', '');
-      setFormData(prev => {
-        const updatedRoles = checked 
-          ? [...prev.roles, role]
-          : prev.roles.filter(r => r !== role);
-          
-        return { ...prev, roles: updatedRoles };
-      });
-    } else if (name.startsWith('agreement-')) {
+    if (name.startsWith('agreement-')) {
       const agreement = name.replace('agreement-', '');
       setFormData(prev => ({
         ...prev,
@@ -151,18 +131,10 @@ export default function RegistrationPage() {
       case 1: // Basic Information
         return formData.fullName && formData.educationLevel && formData.institutionName &&
                formData.yearOfStudy && formData.phoneNumber && formData.email && formData.location;
-      case 2: // Understanding You
-        return formData.personalProfile && formData.threeWords && formData.skills && 
-               formData.githubLink && formData.resume !== null;
-      case 3: // Mindset Test
-        return formData.planFailReaction && formData.groupRole && 
-               formData.communityConcept && formData.projects;
-      case 4: // Personal Journey
-        return formData.joinReason && formData.fieldExperience && 
-               formData.futurePlans && formData.initiativeStory;
-      case 5: // Availability & Contribution
-        return formData.roles.length > 0 && formData.eventIdea;
-      case 6: // Agreement
+      case 2: // Passion & Contribution
+        return formData.passion && formData.experience && formData.skills && 
+               formData.joinReason && formData.contribution && formData.resume !== null;
+      case 3: // Agreement
         return formData.agreements.respect && formData.agreements.mindset;
       default:
         return true;
@@ -310,38 +282,38 @@ export default function RegistrationPage() {
           <div className="space-y-6">
             <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
               <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">2</span>
-              Your Profile
+              Your Passion & Contribution
             </h2>
             
             <div>
               <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaUserAlt className="mr-2" />
-                PERSONAL PROFILE
+                <FaLightbulb className="mr-2" />
+                TELL US ABOUT YOUR PASSION
               </label>
               <textarea
-                name="personalProfile"
-                value={formData.personalProfile}
+                name="passion"
+                value={formData.passion}
                 onChange={handleChange}
                 required
                 rows={3}
                 className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="Brief introduction about yourself"
+                placeholder="What do you love to do or are best at? What drives you?"
               />
             </div>
             
             <div>
               <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaCode className="mr-2" />
-                THREE WORDS THAT BEST DESCRIBE YOU
+                <FaFileAlt className="mr-2" />
+                YOUR EXPERIENCE
               </label>
-              <input
-                type="text"
-                name="threeWords"
-                value={formData.threeWords}
+              <textarea
+                name="experience"
+                value={formData.experience}
                 onChange={handleChange}
                 required
+                rows={3}
                 className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="Your core attributes (separated by commas)"
+                placeholder="Tell us about things you have done in this field (projects, work, etc.)"
               />
             </div>
             
@@ -357,23 +329,39 @@ export default function RegistrationPage() {
                 required
                 rows={3}
                 className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="List your technical and non-technical skills (e.g., React, UI Design, Public Speaking, etc.)"
+                placeholder="Where do you fit in? What are your technical and soft skills?"
               />
             </div>
             
             <div>
               <label className="flex items-center text-xs text-indigo-300 mb-1">
                 <FaGithub className="mr-2" />
-                GITHUB OR PORTFOLIO URL
+                WHY JOIN OUR COMMUNITY?
               </label>
-              <input
-                type="url"
-                name="githubLink"
-                value={formData.githubLink}
+              <textarea
+                name="joinReason"
+                value={formData.joinReason}
                 onChange={handleChange}
                 required
+                rows={3}
                 className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="GitHub/Portfolio link"
+                placeholder="Why do you want to join our community? What are your expectations?"
+              />
+            </div>
+            
+            <div>
+              <label className="flex items-center text-xs text-indigo-300 mb-1">
+                <FaLightbulb className="mr-2" />
+                HOW WOULD YOU CONTRIBUTE?
+              </label>
+              <textarea
+                name="contribution"
+                value={formData.contribution}
+                onChange={handleChange}
+                required
+                rows={3}
+                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
+                placeholder="How do you plan to contribute to our community?"
               />
             </div>
             
@@ -410,243 +398,6 @@ export default function RegistrationPage() {
           <div className="space-y-6">
             <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
               <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">3</span>
-              The Mindset Test
-            </h2>
-            
-            <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaLightbulb className="mr-2" />
-                HOW DO YOU REACT WHEN A PLAN FAILS?
-              </label>
-              <textarea
-                name="planFailReaction"
-                value={formData.planFailReaction}
-                onChange={handleChange}
-                required
-                rows={2}
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="Your resilience algorithm"
-              />
-            </div>
-            
-            <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaNetworkWired className="mr-2" />
-                GROUP PROJECT ROLE
-              </label>
-              <select
-                name="groupRole"
-                value={formData.groupRole}
-                onChange={handleChange}
-                required
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-              >
-                <option value="">Select your natural role</option>
-                <option value="Leader">Leader</option>
-                <option value="Creative Contributor">Creative Contributor</option>
-                <option value="Organizer">Organizer</option>
-                <option value="Motivator">Motivator</option>
-                <option value="Researcher">Researcher</option>
-                <option value="Finisher">Finisher</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            
-            <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaNetworkWired className="mr-2" />
-                WHAT DOES &apos;COMMUNITY&apos; MEAN TO YOU?
-              </label>
-              <textarea
-                name="communityConcept"
-                value={formData.communityConcept}
-                onChange={handleChange}
-                required
-                rows={2}
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="Your collective consciousness definition"
-              />
-            </div>
-            
-            <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaProjectDiagram className="mr-2" />
-                PROJECTS YOU&apos;VE WORKED ON
-              </label>
-              <textarea
-                name="projects"
-                value={formData.projects}
-                onChange={handleChange}
-                required
-                rows={3}
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="Describe some projects you've worked on (include links if available)"
-              />
-            </div>
-          </div>
-        );
-        
-      case 4:
-        return (
-          <div className="space-y-6">
-            <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
-              <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">4</span>
-              Your Journey
-            </h2>
-            
-            <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaLightbulb className="mr-2" />
-                WHY DO YOU WANT TO JOIN QYNEX NEXORA?
-              </label>
-              <textarea
-                name="joinReason"
-                value={formData.joinReason}
-                onChange={handleChange}
-                required
-                rows={2}
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="Share your motivations and what you hope to gain from this community"
-              />
-            </div>
-            
-            <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaNetworkWired className="mr-2" />
-                TELL US ABOUT YOUR FIELD OF INTEREST
-              </label>
-              <textarea
-                name="fieldExperience"
-                value={formData.fieldExperience}
-                onChange={handleChange}
-                required
-                rows={3}
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="What technology/field are you passionate about? What experience have you gained so far?"
-              />
-            </div>
-            
-            <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaBrain className="mr-2" />
-                YOUR FUTURE ROADMAP
-              </label>
-              <textarea
-                name="futurePlans"
-                value={formData.futurePlans}
-                onChange={handleChange}
-                required
-                rows={3}
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="What are your plans for the upcoming years and what steps are you taking to achieve them?"
-              />
-            </div>
-            
-            <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaCode className="mr-2" />
-                SHARE A LEADERSHIP EXPERIENCE
-              </label>
-              <textarea
-                name="initiativeStory"
-                value={formData.initiativeStory}
-                onChange={handleChange}
-                required
-                rows={3}
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="Describe a time when you took initiative to solve a problem or lead a project. What challenges did you face and what was the outcome?"
-              />
-            </div>
-          </div>
-        );
-        
-      case 5:
-        return (
-          <div className="space-y-6">
-            <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
-              <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">5</span>
-              Contribution & Ideas
-            </h2>
-            
-            <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaLightbulb className="mr-2" />
-                YOUR PITCH FOR QYNEX NEXORA
-              </label>
-              <textarea
-                name="eventIdea"
-                value={formData.eventIdea}
-                onChange={handleChange}
-                required
-                rows={3}
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="Pitch an innovative event or initiative you think our community should organize this year"
-              />
-            </div>
-            
-            <div>
-              <p className="text-sm text-indigo-300 mb-4">
-                Check out our <Link href="/" className="text-indigo-400 hover:text-indigo-300 underline">communities page</Link> to learn more about our specialized groups.
-              </p>
-              
-              <label className="flex items-center text-xs text-indigo-300 mb-3">
-                <FaLightbulb className="mr-2" />
-                ROLES YOU WOULD LOVE TO EXPLORE
-              </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-black/50 p-4 rounded-lg border border-indigo-500/20">
-                {[
-                  'Event Planning',
-                  'Team Building',
-                  'Design & Creativity',
-                  'Music/Dance/Cultural Arts',
-                  'Public Speaking/Hosting',
-                  'Community Management',
-                  'Logistics & Operations',
-                  'Tech Development',
-                  'Content Writing',
-                  'Outreach and Collaborations',
-                  'Mentorship/Guidance',
-                  'Others'
-                ].map(role => (
-                  <div key={role} className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id={`role-${role}`}
-                      name={`role-${role}`}
-                      onChange={handleCheckboxChange}
-                      checked={formData.roles.includes(role)}
-                      className="mr-2 border-indigo-500 text-indigo-600 focus:ring-indigo-500 h-4 w-4 bg-black"
-                    />
-                    <label htmlFor={`role-${role}`} className="text-sm text-indigo-200">
-                      {role}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div>
-              <label className="flex items-center text-xs text-indigo-300 mb-1">
-                <FaNetworkWired className="mr-2" />
-                ANYTHING ELSE?
-              </label>
-              <textarea
-                name="additionalInfo"
-                value={formData.additionalInfo}
-                onChange={handleChange}
-                rows={2}
-                className="w-full bg-black border border-indigo-500 rounded p-2 text-indigo-100 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                placeholder="Is there anything else you'd like us to know about you? (Optional)"
-              />
-            </div>
-          </div>
-        );
-        
-      case 6:
-        return (
-          <div className="space-y-6">
-            <h2 className="text-indigo-400 text-xl mb-6 flex items-center">
-              <span className="bg-indigo-600 text-white w-7 h-7 rounded-full flex items-center justify-center mr-3 text-sm">6</span>
               Agreement
             </h2>
             
@@ -749,7 +500,7 @@ export default function RegistrationPage() {
               {/* Step indicator */}
               <div className="mb-4 flex justify-between items-center text-xs text-indigo-400">
                 <span>Step {currentStep} of {totalSteps}</span>
-                <span>{["Basic Info", "Profile", "Mindset", "Journey", "Contribution", "Agreement"][currentStep-1]}</span>
+                <span>{["Basic Info", "Passion & Contribution", "Agreement"][currentStep-1]}</span>
               </div>
               
               <ProgressBar />
