@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLightbulb, FaArrowRight, FaArrowLeft, FaFileUpload, FaGraduationCap, FaPhone, FaEnvelope, FaGithub, FaUserAlt, FaFileAlt, FaTools, FaSchool, FaMapMarkerAlt } from 'react-icons/fa';
 import { submitRegistration, type RegistrationFormData } from '@/lib/registration-service';
-import Link from 'next/link';
 
 export default function RegistrationPage() {
   // Generate random sequence number for display
